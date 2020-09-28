@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CardsAndDecks.Data
 {
-    public class StringCardProperties
+    public class StringCardProperty : CardProperty
     {
         public string Value { get; set; }
     }

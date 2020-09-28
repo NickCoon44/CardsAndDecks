@@ -58,9 +58,9 @@
     <Compile Include="CardProperty.cs" />
     <Compile Include="Deck.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="IntCardProperties.cs" />
+    <Compile Include="IntCardProperty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringCardProperties.cs" />
+    <Compile Include="StringCardProperty.cs" />
     <Compile Include="Template.cs" />
     <Compile Include="TemplateProperty.cs" />
   </ItemGroup>
