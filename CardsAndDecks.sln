@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30406.217
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardsAndDecks.WebMVC", "CardsAndDecks.WebMVC\CardsAndDecks.WebMVC.csproj", "{F6604F7C-2800-4FBE-9B3F-A6F4083A71DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardsAndDecks.Data", "CardsAndDecks.Data\CardsAndDecks.Data.csproj", "{95B68793-DBA3-4AB8-AF0C-7A46C6C66819}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardsAndDecks.Models", "CardsAndDecks.Models\CardsAndDecks.Models.csproj", "{DE202342-5B4E-4940-BC17-3798C383E874}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardsAndDecks.Services", "CardsAndDecks.Services\CardsAndDecks.Services.csproj", "{BA05BFE3-3340-4A07-96F1-B63B7F0617C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F6604F7C-2800-4FBE-9B3F-A6F4083A71DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6604F7C-2800-4FBE-9B3F-A6F4083A71DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6604F7C-2800-4FBE-9B3F-A6F4083A71DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6604F7C-2800-4FBE-9B3F-A6F4083A71DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95B68793-DBA3-4AB8-AF0C-7A46C6C66819}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95B68793-DBA3-4AB8-AF0C-7A46C6C66819}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95B68793-DBA3-4AB8-AF0C-7A46C6C66819}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95B68793-DBA3-4AB8-AF0C-7A46C6C66819}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE202342-5B4E-4940-BC17-3798C383E874}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE202342-5B4E-4940-BC17-3798C383E874}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE202342-5B4E-4940-BC17-3798C383E874}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE202342-5B4E-4940-BC17-3798C383E874}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA05BFE3-3340-4A07-96F1-B63B7F0617C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA05BFE3-3340-4A07-96F1-B63B7F0617C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA05BFE3-3340-4A07-96F1-B63B7F0617C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA05BFE3-3340-4A07-96F1-B63B7F0617C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {89559E40-B5BC-4F48-B9C7-A274DC86AC15}
+	EndGlobalSection
+EndGlobal
