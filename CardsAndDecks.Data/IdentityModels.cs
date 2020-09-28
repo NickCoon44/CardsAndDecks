@@ -33,6 +33,11 @@ namespace CardsAndDecks.Data
         }
 
         public DbSet<Template> Templates { get; set; }
+        public DbSet<TemplateProperty> TemplateProperties { get; set; }
+        public DbSet<Card> Cards { get; set; }
+        public DbSet<CardProperty> CardProperties { get; set; }
+        public DbSet<Deck> Decks { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder

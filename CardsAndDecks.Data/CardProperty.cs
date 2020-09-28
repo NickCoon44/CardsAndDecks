@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CardsAndDecks.Data
 {
-    public class CardProperties
+    public class CardProperty
     {
         [Key]
         public int Id { get; set; }
@@ -22,7 +22,5 @@ namespace CardsAndDecks.Data
         public int TemplatePropertyId { get; set; }
         [Required]
         public TemplateProperty TemplateProperty { get; set; }
-        [Required]
-        public string Value { get; set; }
     }
 }
