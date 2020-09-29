@@ -54,11 +54,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CardCreate.cs" />
+    <Compile Include="CardDetail.cs" />
+    <Compile Include="CardEdit.cs" />
+    <Compile Include="CardPropCreate.cs" />
+    <Compile Include="DeckEdit.cs" />
+    <Compile Include="DeckSimple.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TemplateEdit.cs" />
+    <Compile Include="TemplatePropCreate.cs" />
+    <Compile Include="TemplateSimple.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CardsAndDecks.Data\CardsAndDecks.Data.csproj">
+      <Project>{95B68793-DBA3-4AB8-AF0C-7A46C6C66819}</Project>
+      <Name>CardsAndDecks.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

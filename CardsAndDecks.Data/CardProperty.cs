@@ -8,19 +8,38 @@ using System.Threading.Tasks;
 
 namespace CardsAndDecks.Data
 {
-    public class CardProperty
+    public class CardProperty : TemplateProperty
     {
-        [Key]
-        public int Id { get; set; }
+        // Use Empty Constructor for Custom cards
+        public CardProperty() {}
+        // Use overloaded Constructor when using Template, by passing in Template Properties
+        // each Template Property will be passed in and assigned to the Card of CardId
+        public CardProperty(TemplateProperty tempProp)
+        {
+            PropertyName = tempProp.PropertyName;
+            Type = tempProp.Type;
+            TemplateId = tempProp.TemplateId;
+            Template = tempProp.Template;
+        }
+
         [Required]
         [ForeignKey("Card")]
         public int CardId { get; set; }
         [Required]
         public Card Card { get; set; }
-        [Required]
-        [ForeignKey("TemplateProperty")]
-        public int TemplatePropertyId { get; set; }
-        [Required]
-        public TemplateProperty TemplateProperty { get; set; }
+        public string Value { get; set; }
+        public int ValueInt => ReadNumber(Value);
+
+        public int ReadNumber(string value)
+        {
+            int parsedNum;
+            bool isParsed = int.TryParse(value, out parsedNum);
+            if (isParsed)
+            {
+                return parsedNum;
+            }
+            return 0;
+        }
+
     }
 }

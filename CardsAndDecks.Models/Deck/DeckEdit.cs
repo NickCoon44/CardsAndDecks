@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CardsAndDecks.Data
+namespace CardsAndDecks.Models
 {
-    public class IntCardProperty : CardProperty
+    public class DeckEdit
     {
-        public int Value { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }
