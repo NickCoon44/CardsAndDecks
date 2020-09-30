@@ -29,12 +29,11 @@ namespace CardsAndDecks.WebMVC.Controllers
             if (!ModelState.IsValid) return View(model);
 
             var service = new TemplateService();
-
-            if (service.CreateTemplate(model))
+            int id = service.CreateTemplate(model);
+            if (id != 0)
             {
-                int id = model.Id;
                 TempData["SaveResult"] = "Template created. Add Properties.";
-                return RedirectToAction("Create", "TemplatePropertyController", id);
+                return RedirectToAction("Create", "TemplateProperty", new { templateId = id });
             };
 
             ModelState.AddModelError("", "Template could not be created.");

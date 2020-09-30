@@ -15,7 +15,7 @@ namespace CardsAndDecks.Services
             var entity = new CardProperty()
             {
                 PropertyName = model.PropertyName,
-                Type = model.Type,
+                PropertyType = model.PropertyType,
                 TemplateId = model.TemplateId,
                 CardId = model.CardId,
                 Value = model.Value

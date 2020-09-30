@@ -238,13 +238,13 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Template\Create.cshtml" />
+    <Content Include="Views\TemplateProperty\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Card\" />
     <Folder Include="Views\Deck\" />
-    <Folder Include="Views\TemplateProperty\" />
-    <Folder Include="Views\Template\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

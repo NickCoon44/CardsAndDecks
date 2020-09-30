@@ -13,7 +13,7 @@ namespace CardsAndDecks.Models
         [Required]
         public string PropertyName { get; set; }
         [Required]
-        public PropertyType Type { get; set; }
+        public PropertyType PropertyType { get; set; }
         [Required]
         public int TemplateId { get; set; }
         [Required]

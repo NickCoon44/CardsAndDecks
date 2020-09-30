@@ -58,6 +58,15 @@
     <Compile Include="CardProperty.cs" />
     <Compile Include="Deck.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\202009282026095_InitialCreate.cs" />
+    <Compile Include="Migrations\202009282026095_InitialCreate.Designer.cs">
+      <DependentUpon>202009282026095_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009301514466_CreateTest.cs" />
+    <Compile Include="Migrations\202009301514466_CreateTest.Designer.cs">
+      <DependentUpon>202009301514466_CreateTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Template.cs" />
     <Compile Include="TemplateProperty.cs" />
@@ -65,6 +74,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202009282026095_InitialCreate.resx">
+      <DependentUpon>202009282026095_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009301514466_CreateTest.resx">
+      <DependentUpon>202009301514466_CreateTest.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

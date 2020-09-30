@@ -17,7 +17,7 @@ namespace CardsAndDecks.Data
         public CardProperty(TemplateProperty tempProp)
         {
             PropertyName = tempProp.PropertyName;
-            Type = tempProp.Type;
+            PropertyType = tempProp.PropertyType;
             TemplateId = tempProp.TemplateId;
             Template = tempProp.Template;
         }

@@ -10,36 +10,39 @@ namespace CardsAndDecks.Services
 {
     public class TemplateService
     {
-        public bool CreateTemplate(TemplateSimple model)
+        public int CreateTemplate(TemplateSimple model)
         {
             var entity = new Template()
             {
-                Id = model.Id,
                 Name = model.Name
             };
 
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Templates.Add(entity);
-                return ctx.SaveChanges() == 1;
+                if (ctx.SaveChanges() == 1)
+                {
+                    return entity.Id;
+                }
+                return 0;
             }
         }
 
-        public bool CreateTemplateProperty(TemplatePropCreate model)
-        {
-            var entity = new TemplateProperty()
-            {
-                TemplateId = model.TemplateId,
-                PropertyName = model.PropertyName,
-                Type = model.Type
-            };
+        //public bool CreateTemplateProperty(TemplatePropCreate model)
+        //{
+        //    var entity = new TemplateProperty()
+        //    {
+        //        TemplateId = model.TemplateId,
+        //        PropertyName = model.PropertyName,
+        //        PropertyType = model.PropertyType
+        //    };
 
-            using (var ctx = new ApplicationDbContext())
-            {
-                ctx.TemplateProperties.Add(entity);
-                return ctx.SaveChanges() == 1;
-            }
-        }
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        ctx.TemplateProperties.Add(entity);
+        //        return ctx.SaveChanges() == 1;
+        //    }
+        //}
 
         public TemplateSimple GetTemplateById(int id)
         {
@@ -55,7 +58,7 @@ namespace CardsAndDecks.Services
                         Name = entity.Name,
                         PropertyList = entity.PropertyList.Select(t => new TemplatePropCreate
                         {
-                            Type = t.Type,
+                            PropertyType = t.PropertyType,
                             PropertyName = t.PropertyName,
                             TemplateId = t.TemplateId
                         }).ToList()

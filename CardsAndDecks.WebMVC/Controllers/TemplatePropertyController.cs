@@ -22,22 +22,43 @@ namespace CardsAndDecks.WebMVC.Controllers
         {
             var service = new TemplateService();
             var template = service.GetTemplateById(templateId);
-            return View(template);
+
+            //var templateProp = new TemplatePropCreate()
+            //{
+            //    TemplateId = templateId
+            //};
+
+            var model = new TemplateViewModel()
+            {
+                TemplateName = template.Name,
+                PropertyList = template.PropertyList,
+                TemplateId = templateId
+                
+            };
+
+            return View(model);
         }
 
+        // GET: Post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(TemplatePropCreate model)
+        public ActionResult Create(TemplateViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
 
+            var property = new TemplatePropCreate()
+            {
+                TemplateId = model.TemplateId,
+                PropertyName = model.PropertyName,
+                PropertyType = model.PropertyType
+            };
+
             var service = new TemplatePropertyService();
 
-            if (service.CreateTemplateProperty(model))
+            if (service.CreateTemplateProperty(property))
             {
-                int id = model.TemplateId;
                 TempData["SaveResult"] = "Property Added";
-                return RedirectToAction("Create", id);
+                return RedirectToAction("Create", new { templateId = model.TemplateId });
             };
 
             ModelState.AddModelError("", "Template Property could not be created.");

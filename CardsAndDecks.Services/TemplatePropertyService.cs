@@ -16,11 +16,12 @@ namespace CardsAndDecks.Services
             {
                 TemplateId = model.TemplateId,
                 PropertyName = model.PropertyName,
-                Type = model.Type,
+                PropertyType = model.PropertyType,
             };
 
             using (var ctx = new ApplicationDbContext())
             {
+                //entity.Template = ctx.Templates.Find(entity.TemplateId);
                 ctx.TemplateProperties.Add(entity);
                 return ctx.SaveChanges() == 1;
             }

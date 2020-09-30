@@ -15,12 +15,12 @@ namespace CardsAndDecks.Data
         [Required]
         [ForeignKey("Template")]
         public int TemplateId { get; set; }
-        [Required]
+        //[Required]
         public virtual Template Template { get; set; }
         [Required]
         public string PropertyName { get; set; }
         [Required]
-        public PropertyType Type { get; set; }
+        public PropertyType PropertyType { get; set; }
     }
     public enum PropertyType { Text, Number };
 }
