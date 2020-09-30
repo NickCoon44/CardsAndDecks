@@ -27,6 +27,7 @@ namespace CardsAndDecks.Data
         public int CardId { get; set; }
         [Required]
         public Card Card { get; set; }
+        [Required]
         public string Value { get; set; }
         public int ValueInt => ReadNumber(Value);
 

@@ -14,10 +14,8 @@ namespace CardsAndDecks.Data
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        [Required]
         [ForeignKey("Deck")]
         public int DeckId { get; set; }
-        [Required]
         public virtual Deck Deck { get; set; }
     }
 }

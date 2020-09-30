@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace CardsAndDecks.Models
 {
-    public class TemplateSimple
+    public class DeckCreate
     {
-        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public ICollection<TemplatePropCreate> PropertyList { get; set; }
     }
 }

@@ -54,16 +54,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CardCreate.cs" />
-    <Compile Include="CardDetail.cs" />
-    <Compile Include="CardEdit.cs" />
-    <Compile Include="CardPropCreate.cs" />
-    <Compile Include="DeckEdit.cs" />
-    <Compile Include="DeckSimple.cs" />
+    <Compile Include="Card\CardCreate.cs" />
+    <Compile Include="Card\CardDetail.cs" />
+    <Compile Include="Card\CardEdit.cs" />
+    <Compile Include="Card\CardPropCreate.cs" />
+    <Compile Include="Deck\DeckDetail.cs" />
+    <Compile Include="Deck\DeckEdit.cs" />
+    <Compile Include="Deck\DeckCreate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TemplateEdit.cs" />
-    <Compile Include="TemplatePropCreate.cs" />
-    <Compile Include="TemplateSimple.cs" />
+    <Compile Include="Template\TemplateEdit.cs" />
+    <Compile Include="Template\TemplatePropCreate.cs" />
+    <Compile Include="Template\TemplateSimple.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
