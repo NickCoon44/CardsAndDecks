@@ -30,6 +30,8 @@ namespace CardsAndDecks.WebMVC.Controllers
 
             var service = new TemplateService();
             int id = service.CreateTemplate(model);
+            service.SeedNameProperty(id);
+
             if (id != 0)
             {
                 TempData["SaveResult"] = "Template created. Add Properties.";

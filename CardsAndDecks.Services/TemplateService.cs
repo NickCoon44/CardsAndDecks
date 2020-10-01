@@ -10,6 +10,18 @@ namespace CardsAndDecks.Services
 {
     public class TemplateService
     {
+        public bool SeedNameProperty(int templateId)
+        {
+            var seedNameProp = new TemplatePropCreate()
+            {
+                TemplateId = templateId,
+                PropertyName = "Name",
+                PropertyType = PropertyType.Text
+            };
+            var propService = new TemplatePropertyService();
+            return propService.CreateTemplateProperty(seedNameProp);
+        }
+
         public int CreateTemplate(TemplateSimple model)
         {
             var entity = new Template()
@@ -27,22 +39,6 @@ namespace CardsAndDecks.Services
                 return 0;
             }
         }
-
-        //public bool CreateTemplateProperty(TemplatePropCreate model)
-        //{
-        //    var entity = new TemplateProperty()
-        //    {
-        //        TemplateId = model.TemplateId,
-        //        PropertyName = model.PropertyName,
-        //        PropertyType = model.PropertyType
-        //    };
-
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        ctx.TemplateProperties.Add(entity);
-        //        return ctx.SaveChanges() == 1;
-        //    }
-        //}
 
         public TemplateSimple GetTemplateById(int id)
         {

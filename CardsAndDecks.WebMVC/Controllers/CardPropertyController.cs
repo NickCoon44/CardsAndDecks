@@ -26,12 +26,16 @@ namespace CardsAndDecks.WebMVC.Controllers
             var templateService = new TemplateService();
             var template = templateService.GetTemplateById(card.TemplateId);
 
+            var values = new string[template.PropertyList.Count()];
+            values[0] = card.Name;
+
             var model = new CardViewModel()
             {
                 CardName = card.Name,
-                CardId = cardId,
+                CardId = card.Id,
                 TemplateId = card.TemplateId,
-                TemplatePropertyList = template.PropertyList
+                TemplatePropertyList = template.PropertyList,
+                Values = values
             };
 
             return View(model);
@@ -46,7 +50,7 @@ namespace CardsAndDecks.WebMVC.Controllers
 
             int templateId = model.TemplateId;
             var tempPropService = new TemplatePropertyService();
-            var tempProps = tempPropService.GetTemplateProperties(templateId);
+            var tempPropList = tempPropService.GetTemplateProperties(templateId);
 
             var cardPropService = new CardPropertyService();
 
@@ -54,7 +58,7 @@ namespace CardsAndDecks.WebMVC.Controllers
             {
                 var cardProperty = new CardPropCreate()
                 {
-                    TemplatePropId = tempProps[i].Id,
+                    TemplatePropId = tempPropList[i].Id,
                     Value = model.Values[i],
                     CardId = model.CardId
                 };

@@ -46,7 +46,16 @@
     </div>
     if (Model.TemplatePropertyList != null)
     {
-        for (var i = 0; i < Model.TemplatePropertyList.Count(); i++)
+        <tr>
+            <td>
+                @Html.TextBoxFor(x => Model.TemplatePropertyList[0].PropertyName, new { @class = "form-control", @readonly = "readonly" })
+            </td>
+            <td>
+                @Html.TextBoxFor(x => Model.Values[0], new { @class = "form-control", @readonly = "readonly" })
+            </td>
+        </tr>
+        
+        for (var i = 1; i < Model.TemplatePropertyList.Count(); i++)
         {
             <tr>
                 <td>

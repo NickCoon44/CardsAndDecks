@@ -23,16 +23,11 @@ namespace CardsAndDecks.WebMVC.Controllers
             var service = new TemplateService();
             var template = service.GetTemplateById(templateId);
 
-            //var templateProp = new TemplatePropCreate()
-            //{
-            //    TemplateId = templateId
-            //};
-
             var model = new TemplateViewModel()
             {
                 TemplateName = template.Name,
                 PropertyList = template.PropertyList,
-                TemplateId = templateId
+                TemplateId = template.Id
                 
             };
 
