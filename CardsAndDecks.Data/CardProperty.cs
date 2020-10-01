@@ -25,7 +25,6 @@ namespace CardsAndDecks.Data
         [Required]
         [ForeignKey("Card")]
         public int CardId { get; set; }
-        [Required]
         public Card Card { get; set; }
         [Required]
         public string Value { get; set; }

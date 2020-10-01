@@ -169,6 +169,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CardController.cs" />
+    <Compile Include="Controllers\CardPropertyController.cs" />
     <Compile Include="Controllers\DeckController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -240,10 +241,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Template\Create.cshtml" />
     <Content Include="Views\TemplateProperty\Create.cshtml" />
+    <Content Include="Views\Card\Create.cshtml" />
+    <Content Include="Views\CardProperty\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Card\" />
     <Folder Include="Views\Deck\" />
   </ItemGroup>
   <ItemGroup>

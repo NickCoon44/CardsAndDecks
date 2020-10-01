@@ -54,7 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CardPropertiesService.cs" />
+    <Compile Include="CardPropertyService.cs" />
     <Compile Include="CardService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplatePropertyService.cs" />

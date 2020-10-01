@@ -1,5 +1,6 @@
 ﻿using CardsAndDecks.Data;
 using CardsAndDecks.Models;
+using CardsAndDecks.Models.Template;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,26 @@ namespace CardsAndDecks.Services
 
             using (var ctx = new ApplicationDbContext())
             {
-                //entity.Template = ctx.Templates.Find(entity.TemplateId);
                 ctx.TemplateProperties.Add(entity);
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public IList<TemplatePropDetail> GetTemplateProperties(int templateId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.TemplateProperties.Where(t => t.TemplateId == templateId).Select(
+                    e =>
+                    new TemplatePropDetail
+                    {
+                        Id = e.Id,
+                        TemplateId = e.TemplateId,
+                        PropertyName = e.PropertyName,
+                        PropertyType = e.PropertyType
+
+                    }).ToList();
+                return query;
             }
         }
     }

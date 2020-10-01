@@ -12,6 +12,6 @@ namespace CardsAndDecks.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public ICollection<TemplatePropCreate> PropertyList { get; set; }
+        public IList<TemplatePropCreate> PropertyList { get; set; }
     }
 }
