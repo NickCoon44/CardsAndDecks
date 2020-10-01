@@ -89,5 +89,27 @@ namespace CardsAndDecks.WebMVC.Controllers
             ModelState.AddModelError("", "The card name could not be updated.");
             return View(model);
         }
+
+        public ActionResult Delete(int id)
+        {
+            var svc = new CardService();
+            var model = svc.GetCardById(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePost(int id)
+        {
+            var service = new CardService();
+
+            service.DeleteCard(id);
+
+            TempData["SaveResult"] = "Your note was deleted";
+
+            return RedirectToAction("Index");
+        }
     }
 }
