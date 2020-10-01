@@ -9,6 +9,8 @@
 
 @using (Html.BeginForm())
 {
+    @Html.Hidden("TemplateId")
+    @Html.Hidden("CardName")
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">

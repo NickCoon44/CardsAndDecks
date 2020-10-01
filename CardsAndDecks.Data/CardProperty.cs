@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CardsAndDecks.Data
 {
-    public class CardProperty : TemplateProperty
+    public class CardProperty
     {
         // Use Empty Constructor for Custom cards
         public CardProperty() {}
@@ -21,7 +21,16 @@ namespace CardsAndDecks.Data
             TemplateId = tempProp.TemplateId;
             Template = tempProp.Template;
         }
-
+        [Key]
+        public int Id { get; set; }
+        [Required]
+        public string PropertyName { get; set; }
+        [Required]
+        public PropertyType PropertyType { get; set; }
+        [Required]
+        [ForeignKey("Template")]
+        public int TemplateId { get; set; }
+        public Template Template { get; set; }
         [Required]
         [ForeignKey("Card")]
         public int CardId { get; set; }

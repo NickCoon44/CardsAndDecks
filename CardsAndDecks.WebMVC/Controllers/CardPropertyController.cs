@@ -44,14 +44,9 @@ namespace CardsAndDecks.WebMVC.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            // workaround due to unexplained null model properties
-            var cardService = new CardService();
-            var card = cardService.GetCardById(model.CardId);
-            int templateId = card.TemplateId;
+            int templateId = model.TemplateId;
             var tempPropService = new TemplatePropertyService();
             var tempProps = tempPropService.GetTemplateProperties(templateId);
-            int first = tempProps[0].Id;
-            // Clean all that up someday
 
             var cardPropService = new CardPropertyService();
 
@@ -59,7 +54,7 @@ namespace CardsAndDecks.WebMVC.Controllers
             {
                 var cardProperty = new CardPropCreate()
                 {
-                    TemplatePropId = first + i,
+                    TemplatePropId = tempProps[i].Id,
                     Value = model.Values[i],
                     CardId = model.CardId
                 };
