@@ -61,5 +61,22 @@ namespace CardsAndDecks.Services
                     };
             }
         }
+
+        public IEnumerable<TemplateSimple> GetTemplates()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Cards
+                        .Select(e => new TemplateSimple
+                        {
+                            Id = e.Id,
+                            Name = e.Name,
+                        });
+
+                return query.ToArray();
+            }
+        }
     }
 }

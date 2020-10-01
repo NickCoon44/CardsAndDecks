@@ -13,7 +13,9 @@ namespace CardsAndDecks.WebMVC.Controllers
         // GET: Template
         public ActionResult Index()
         {
-            return View();
+            var service = new TemplateService();
+            var model = service.GetTemplates();
+            return View(model);
         }
 
         // GET:

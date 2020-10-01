@@ -44,7 +44,7 @@ namespace CardsAndDecks.WebMVC.Controllers
         // GET: Post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CardViewModel model) //returns null name and 0 templateId and I don't know why
+        public ActionResult Create(CardViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
 
@@ -52,7 +52,7 @@ namespace CardsAndDecks.WebMVC.Controllers
             var tempPropService = new TemplatePropertyService();
             var tempPropList = tempPropService.GetTemplateProperties(templateId);
 
-            var cardPropService = new CardPropertyService();
+            var cardService = new CardService();
 
             for (var i = 0; i < model.Values.Count(); i++)
             {
@@ -62,7 +62,7 @@ namespace CardsAndDecks.WebMVC.Controllers
                     Value = model.Values[i],
                     CardId = model.CardId
                 };
-                bool isCreated = cardPropService.CreateCardProperty(cardProperty);
+                bool isCreated = cardService.CreateCardProperty(cardProperty);
                 if (!isCreated)
                 {
                     ModelState.AddModelError("", "Template Property could not be created.");
@@ -72,8 +72,46 @@ namespace CardsAndDecks.WebMVC.Controllers
 
             }
 
-            TempData["SaveResult"] = "Property Added";
-            return RedirectToAction("Index");
+            TempData["SaveResult"] = "Card Created";
+            return RedirectToAction("Index", "Card");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var service = new CardService();
+            var property = service.GetCardPropById(id);
+            var model = new CardPropEdit
+            {
+                PropertyId = property.Id,
+                Value = property.Value,
+                CardId = property.CardId
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, CardPropEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.PropertyId != id)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+                return View(model);
+            }
+
+            var service = new CardService();
+
+            if (service.UpdateCardProperty(model))
+            {
+                TempData["SaveResult"] = "The card name was updated.";
+                return RedirectToAction("Details", "Card", new { id = model.CardId });
+            }
+
+            ModelState.AddModelError("", "The card name could not be updated.");
+            return View(model);
         }
     }
 }

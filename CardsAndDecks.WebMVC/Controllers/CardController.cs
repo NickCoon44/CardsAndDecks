@@ -1,4 +1,5 @@
 ﻿using CardsAndDecks.Models;
+using CardsAndDecks.Models.Card;
 using CardsAndDecks.Services;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,10 @@ namespace CardsAndDecks.WebMVC.Controllers
         // GET: Card
         public ActionResult Index()
         {
-            return View();
+            var service = new CardService();
+            var model = service.GetCards();
+
+            return View(model);
         }
 
         // GET: Create
@@ -32,12 +36,57 @@ namespace CardsAndDecks.WebMVC.Controllers
             int id = service.CreateCard(model);
             if (id != 0)
             {
-                TempData["SaveResult"] = "Card created. Add Properties.";
+                TempData["SaveResult"] = "Add Properties";
                 return RedirectToAction("Create", "CardProperty", new { cardId = id });
             };
 
             ModelState.AddModelError("", "Template could not be created.");
 
+            return View(model);
+        }
+
+        public ActionResult Details(int id)
+        {
+            var svc = new CardService();
+            var model = svc.GetCardById(id);
+
+            return View(model);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var service = new CardService();
+            var card = service.GetCardById(id);
+            var model = new CardEdit
+            {
+                CardId = card.Id,
+                Name = card.Name,
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, CardEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.CardId != id)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+                return View(model);
+            }
+
+            var service = new CardService();
+
+            if (service.UpdateCard(model))
+            {
+                TempData["SaveResult"] = "The card name was updated.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "The card name could not be updated.");
             return View(model);
         }
     }
