@@ -49,7 +49,7 @@ namespace CardsAndDecks.WebMVC.Controllers
                 PropertyType = model.PropertyType
             };
 
-            var service = new TemplatePropertyService();
+            var service = new TemplateService();
 
             if (service.CreateTemplateProperty(property))
             {

@@ -48,8 +48,8 @@ namespace CardsAndDecks.WebMVC.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            var tempPropService = new TemplatePropertyService();
-            var tempPropList = tempPropService.GetTemplateProperties(model.TemplateId);
+            var tempService = new TemplateService();
+            var tempPropList = tempService.GetTemplateProperties(model.TemplateId);
 
             var cardService = new CardService();
 

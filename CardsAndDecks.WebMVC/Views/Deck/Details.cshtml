@@ -1,0 +1,45 @@
+﻿@model CardsAndDecks.Models.DeckDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DeckDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+</div>
+
+@*<table class="table">
+    @foreach (var item in Model.CardList)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(c => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(c => item.TemplateName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "TemplateProperty", new { id = item.Id }, null)
+            </td>
+        </tr>
+    }
+</table>*@
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

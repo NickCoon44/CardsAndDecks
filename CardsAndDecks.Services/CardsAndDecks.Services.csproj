@@ -55,8 +55,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CardService.cs" />
+    <Compile Include="DeckService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TemplatePropertyService.cs" />
     <Compile Include="TemplateService.cs" />
   </ItemGroup>
   <ItemGroup>

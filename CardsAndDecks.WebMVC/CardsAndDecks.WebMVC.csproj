@@ -253,10 +253,14 @@
     <Content Include="Views\Template\Edit.cshtml" />
     <Content Include="Views\TemplateProperty\Edit.cshtml" />
     <Content Include="Views\Template\Delete.cshtml" />
+    <Content Include="Views\Deck\Create.cshtml" />
+    <Content Include="Views\Deck\Index.cshtml" />
+    <Content Include="Views\Deck\Details.cshtml" />
+    <Content Include="Views\Deck\Edit.cshtml" />
+    <Content Include="Views\Deck\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Deck\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
