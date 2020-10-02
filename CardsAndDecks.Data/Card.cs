@@ -10,11 +10,20 @@ namespace CardsAndDecks.Data
 {
     public class Card
     {
+        public Card(){ }
+
+        public Card(Template template)
+        {
+            TemplateId = template.Id;
+            TemplateName = template.Name;
+        }
+
         [Key]
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         public int TemplateId { get; set; }
+        public string TemplateName { get; set; }
         // [ForeignKey("Deck")]
         // public int DeckId { get; set; }
         // public virtual Deck Deck { get; set; }

@@ -105,13 +105,27 @@ namespace CardsAndDecks.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                        .Templates
-                        .Single(e => e.Id == model.TemplateId);
+                var entity = ctx
+                    .Templates
+                    .Single(e => e.Id == model.TemplateId);
+                
+                var cardsUsingTemplate = ctx
+                    .Cards
+                    .Where(c => c.TemplateId == model.TemplateId);
+
+                int count = 1;
+                if (cardsUsingTemplate != null)
+                {
+                    foreach (Card card in cardsUsingTemplate)
+                    {
+                        card.TemplateName = model.Name;
+                        count++;
+                    }
+                }
+
                 entity.Name = model.Name;
 
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() == count;
             }
         }
 

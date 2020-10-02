@@ -30,13 +30,14 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TemplateId)
+            @Html.DisplayNameFor(model => model.TemplateName)
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
+        @Html.HiddenFor(modelItem => item.TemplateId)
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Id)
@@ -45,7 +46,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TemplateId)
+                @Html.DisplayFor(modelItem => item.TemplateName)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

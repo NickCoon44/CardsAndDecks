@@ -23,6 +23,11 @@ namespace CardsAndDecks.WebMVC.Controllers
         // GET: Create
         public ActionResult Create()
         {
+            var service = new TemplateService();
+            var templates = service.GetTemplates();
+            List<SelectListItem> templateSelect = templates.Select(t => new SelectListItem { Value = t.Id.ToString(), Text = t.Name }).ToList();
+            ViewBag.Templates = templateSelect;
+
             return View();
         }
 

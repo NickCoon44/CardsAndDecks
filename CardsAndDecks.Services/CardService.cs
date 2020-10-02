@@ -13,14 +13,15 @@ namespace CardsAndDecks.Services
     {
         public int CreateCard(CardCreate model)
         {
-            var entity = new Card()
-            {
-                Name = model.Name,
-                TemplateId = model.TemplateId
-            };
-
             using (var ctx = new ApplicationDbContext())
             {
+                var template = ctx.Templates.Single(t => t.Id == model.TemplateId);
+
+                var entity = new Card(template)
+                {
+                    Name = model.Name,
+                };
+
                 ctx.Cards.Add(entity);
                 if (ctx.SaveChanges() == 1)
                 {
@@ -50,16 +51,17 @@ namespace CardsAndDecks.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                        .Cards
-                        .Single(e => e.Id == id);
+                var entity = ctx
+                    .Cards
+                    .Single(e => e.Id == id);
+
                 return
                     new CardDetail
                     {
                         Id = id,
                         Name = entity.Name,
                         TemplateId = entity.TemplateId,
+                        TemplateName = entity.TemplateName,
                         PropertyList = entity.PropertyList.Select(t => new CardPropDetail
                         {
                             Id = t.Id,
@@ -76,10 +78,10 @@ namespace CardsAndDecks.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                        .CardProperties
-                        .Single(e => e.Id == propertyId);
+                var entity = ctx
+                    .CardProperties
+                    .Single(e => e.Id == propertyId);
+
                 return
                     new CardPropDetail
                     {
@@ -96,15 +98,15 @@ namespace CardsAndDecks.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query =
-                    ctx
-                        .Cards
-                        .Select(e => new CardDetail
-                        {
-                            Id = e.Id,
-                            Name = e.Name,
-                            TemplateId = e.TemplateId
-                        });
+                var query = ctx
+                    .Cards
+                    .Select(e => new CardDetail
+                    {
+                        Id = e.Id,
+                        TemplateName = e.TemplateName,
+                        Name = e.Name,
+                        TemplateId = e.TemplateId
+                    });
 
                 return query.ToArray();
             }
@@ -114,10 +116,10 @@ namespace CardsAndDecks.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                        .Cards
-                        .Single(e => e.Id == model.CardId);
+                var entity = ctx
+                    .Cards
+                    .Single(e => e.Id == model.CardId);
+
                 entity.Name = model.Name;
 
                 return ctx.SaveChanges() == 1;
@@ -128,10 +130,9 @@ namespace CardsAndDecks.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                        .CardProperties
-                        .Single(e => e.Id == model.PropertyId);
+                var entity = ctx
+                    .CardProperties
+                    .Single(e => e.Id == model.PropertyId);
                 entity.Value = model.Value;
 
                 return ctx.SaveChanges() == 1;
