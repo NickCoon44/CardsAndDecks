@@ -112,7 +112,7 @@ namespace CardsAndDecks.WebMVC.Controllers
 
             service.DeleteCard(id);
 
-            TempData["SaveResult"] = "Your note was deleted";
+            TempData["SaveResult"] = "Card Deleted";
 
             return RedirectToAction("Index");
         }

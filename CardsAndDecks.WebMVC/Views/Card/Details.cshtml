@@ -6,6 +6,7 @@
 
 <h2>Details</h2>
 
+@Html.HiddenFor(model => model.TemplateId)
 <div>
     <h4>CardDetail</h4>
     <hr />
@@ -27,11 +28,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TemplateId)
+            @Html.DisplayNameFor(model => model.TemplateName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TemplateId)
+            @Html.DisplayFor(model => model.TemplateName)
         </dd>
 
     </dl>
@@ -56,5 +57,6 @@
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index") |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Id })
 </p>
