@@ -68,6 +68,7 @@
     <Compile Include="Template\TemplateEdit.cs" />
     <Compile Include="Template\TemplatePropCreate.cs" />
     <Compile Include="Template\TemplatePropDetail.cs" />
+    <Compile Include="Template\TemplatePropEdit.cs" />
     <Compile Include="Template\TemplateSimple.cs" />
     <Compile Include="Template\TemplateViewModel.cs" />
   </ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using CardsAndDecks.Data;
+using CardsAndDecks.Models.Template;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace CardsAndDecks.Models.Card
         public string CardName { get; set; }
         public int TemplateId { get; set; }
         public int CardId { get; set; }
-        public IList<TemplatePropCreate> TemplatePropertyList { get; set; }
+        public IList<TemplatePropDetail> TemplatePropertyList { get; set; }
         public string[] Values { get; set; }
     }
 }

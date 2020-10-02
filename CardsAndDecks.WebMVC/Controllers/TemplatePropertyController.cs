@@ -1,5 +1,6 @@
 ﻿using CardsAndDecks.Data;
 using CardsAndDecks.Models;
+using CardsAndDecks.Models.Template;
 using CardsAndDecks.Services;
 using System;
 using System.Collections.Generic;
@@ -58,6 +59,44 @@ namespace CardsAndDecks.WebMVC.Controllers
 
             ModelState.AddModelError("", "Template Property could not be created.");
 
+            return View(model);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var service = new TemplateService();
+            var property = service.GetTemplatePropById(id);
+            var model = new TemplatePropEdit
+            {
+                PropertyId = property.Id,
+                PropertyName = property.PropertyName,
+                TemplateId = property.TemplateId
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, TemplatePropEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.PropertyId != id)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+                return View(model);
+            }
+
+            var service = new TemplateService();
+
+            if (service.UpdateTemplateProperty(model))
+            {
+                TempData["SaveResult"] = "The Property was updated.";
+                return RedirectToAction("Details", "Template", new { id = model.TemplateId });
+            }
+
+            ModelState.AddModelError("", "The Property could not be updated.");
             return View(model);
         }
     }

@@ -45,6 +45,71 @@ namespace CardsAndDecks.WebMVC.Controllers
             return View(model);
         }
 
-        
+        public ActionResult Details(int id)
+        {
+            var svc = new TemplateService();
+            var model = svc.GetTemplateById(id);
+
+            return View(model);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var service = new TemplateService();
+            var template = service.GetTemplateById(id);
+            var model = new TemplateEdit
+            {
+                TemplateId = template.Id,
+                Name = template.Name,
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, TemplateEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.TemplateId != id)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+                return View(model);
+            }
+
+            var service = new TemplateService();
+
+            if (service.UpdateTemplate(model))
+            {
+                TempData["SaveResult"] = "The Template name was updated.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "The Template name could not be updated.");
+            return View(model);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var svc = new TemplateService();
+            var model = svc.GetTemplateById(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePost(int id)
+        {
+            var service = new TemplateService();
+
+            service.DeleteTemplate(id);
+
+            TempData["SaveResult"] = "Your note was deleted";
+
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -48,9 +48,8 @@ namespace CardsAndDecks.WebMVC.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            int templateId = model.TemplateId;
             var tempPropService = new TemplatePropertyService();
-            var tempPropList = tempPropService.GetTemplateProperties(templateId);
+            var tempPropList = tempPropService.GetTemplateProperties(model.TemplateId);
 
             var cardService = new CardService();
 
@@ -65,7 +64,7 @@ namespace CardsAndDecks.WebMVC.Controllers
                 bool isCreated = cardService.CreateCardProperty(cardProperty);
                 if (!isCreated)
                 {
-                    ModelState.AddModelError("", "Template Property could not be created.");
+                    ModelState.AddModelError("", "Property could not be created.");
 
                     return View(model);
                 }
@@ -106,11 +105,11 @@ namespace CardsAndDecks.WebMVC.Controllers
 
             if (service.UpdateCardProperty(model))
             {
-                TempData["SaveResult"] = "The card name was updated.";
+                TempData["SaveResult"] = "The Property was updated.";
                 return RedirectToAction("Details", "Card", new { id = model.CardId });
             }
 
-            ModelState.AddModelError("", "The card name could not be updated.");
+            ModelState.AddModelError("", "The Property could not be updated.");
             return View(model);
         }
     }
