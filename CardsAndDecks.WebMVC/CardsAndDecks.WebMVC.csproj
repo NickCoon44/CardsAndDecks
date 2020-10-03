@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AssignmentController.cs" />
     <Compile Include="Controllers\CardController.cs" />
     <Compile Include="Controllers\CardPropertyController.cs" />
     <Compile Include="Controllers\DeckController.cs" />
@@ -258,6 +259,7 @@
     <Content Include="Views\Deck\Details.cshtml" />
     <Content Include="Views\Deck\Edit.cshtml" />
     <Content Include="Views\Deck\Delete.cshtml" />
+    <Content Include="Views\Assignment\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

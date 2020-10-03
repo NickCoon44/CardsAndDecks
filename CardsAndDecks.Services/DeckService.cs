@@ -56,13 +56,14 @@ namespace CardsAndDecks.Services
                     {
                         Id = entity.Id,
                         Name = entity.Name,
-                        //CardList = entity.CardList.Select(c => new CardDetail
-                        //{
-                        //    Id = t.Id,
-                        //    PropertyType = t.PropertyType,
-                        //    PropertyName = t.PropertyName,
-                        //    TemplateId = t.TemplateId
-                        //}).ToList()
+                        AssignmentList = entity.AssignmentList.Select(c => new AssignmentDetail
+                        {
+                            Id = c.Id,
+                            CardId = c.Id,
+                            Card = c.Card,
+                            DeckId = c.DeckId,
+                            Deck = c.Deck
+                        }).ToList()
                     };
             }
         }

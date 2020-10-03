@@ -1,5 +1,4 @@
 ﻿using CardsAndDecks.Models;
-using CardsAndDecks.Models.Card;
 using CardsAndDecks.Services;
 using System;
 using System.Collections.Generic;

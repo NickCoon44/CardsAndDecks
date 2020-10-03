@@ -1,0 +1,81 @@
+﻿@model CardsAndDecks.Models.AssignmentViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Assign</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>AssignmentViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.DeckId)
+        @Html.HiddenFor(model => model.CardId)
+        @Html.HiddenFor(model => model.IsCard)
+
+    </div>
+}
+
+@if (Model.IsCard)
+{
+    <table class="table">
+
+        @foreach (var item in Model.DeckList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("+ Add", "CreateAssignment", new { deckId = item.Id, cardId = Model.CardId, isCard = true })
+                </td>
+            </tr>
+        }
+    </table>
+    <div>
+        @Html.ActionLink("Back to Card", "Details", "Card", new { id = Model.CardId }, null)
+    </div>
+}
+else
+{
+    <table class="table">
+        @foreach (var item in Model.CardList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TemplateName)
+                </td>
+                <td>
+                    @Html.ActionLink("+ Add", "CreateAssignment", new { deckId = Model.DeckId, cardId = item.Id, isCard = false })
+                </td>
+            </tr>
+        }
+    </table>
+    <div>
+        @Html.ActionLink("Back to Deck", "Details", "Deck", new { id = Model.DeckId }, null)
+    </div>
+}
+
+@if (TempData.ContainsKey("SaveResult"))
+{
+    <div class="alert alert-success fade in" role="alert">
+
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

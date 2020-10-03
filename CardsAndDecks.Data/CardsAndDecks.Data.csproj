@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assignment.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="CardProperty.cs" />
     <Compile Include="Deck.cs" />
@@ -65,6 +66,10 @@
     <Compile Include="Migrations\202010021735397_CardChange.cs" />
     <Compile Include="Migrations\202010021735397_CardChange.Designer.cs">
       <DependentUpon>202010021735397_CardChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010030429322_InitialAssignment.cs" />
+    <Compile Include="Migrations\202010030429322_InitialAssignment.Designer.cs">
+      <DependentUpon>202010030429322_InitialAssignment.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,6 +86,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010021735397_CardChange.resx">
       <DependentUpon>202010021735397_CardChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010030429322_InitialAssignment.resx">
+      <DependentUpon>202010030429322_InitialAssignment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

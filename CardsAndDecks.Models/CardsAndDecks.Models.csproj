@@ -54,6 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assignment\AssignmentCreate.cs" />
+    <Compile Include="Assignment\AssignmentDetail.cs" />
+    <Compile Include="Assignment\AssignmentViewModel.cs" />
     <Compile Include="Card\CardCreate.cs" />
     <Compile Include="Card\CardDetail.cs" />
     <Compile Include="Card\CardEdit.cs" />

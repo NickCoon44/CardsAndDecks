@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace CardsAndDecks.Models
 {
-    public class CardPropEdit
+    public class AssignmentCreate
     {
-        public int PropertyId { get; set; }
-        public string Value { get; set; }
         public int CardId { get; set; }
+        public int DeckId { get; set; }
     }
 }

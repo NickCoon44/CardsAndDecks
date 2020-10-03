@@ -20,23 +20,26 @@
 
     </dl>
 </div>
+<p>
+    @Html.ActionLink("Add a Card", "Create", "Assignment", new { id = Model.Id, isCard = false }, null)
+</p>
 
-@*<table class="table">
-    @foreach (var item in Model.CardList)
+<table class="table">
+    @foreach (var item in Model.AssignmentList)
     {
         <tr>
             <td>
-                @Html.DisplayFor(c => item.Name)
+                @Html.DisplayFor(c => item.Card.Name)
             </td>
             <td>
-                @Html.DisplayFor(c => item.TemplateName)
+                @Html.DisplayFor(c => item.Card.TemplateName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", "TemplateProperty", new { id = item.Id }, null)
+                @Html.ActionLink("Remove", "Delete", "Assignment", new { assignmentId = item.Id, fromCard = false, objId = Model.Id }, null)
             </td>
         </tr>
     }
-</table>*@
+</table>
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

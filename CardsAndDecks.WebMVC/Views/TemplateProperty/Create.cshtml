@@ -30,7 +30,7 @@
         <hr />
         @{
             @:<ol>
-                foreach (CardsAndDecks.Models.TemplatePropCreate property in Model.PropertyList)
+                foreach (var property in Model.PropertyList)
                 {
                     @:<li>@property.PropertyName</li>
                 }

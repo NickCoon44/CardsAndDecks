@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CardsAndDecks.Models.Card
+namespace CardsAndDecks.Models
 {
     public class CardViewModel
     {

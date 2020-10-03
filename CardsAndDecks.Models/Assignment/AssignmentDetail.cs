@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace CardsAndDecks.Models
 {
-    public class CardPropDetail
+    public class AssignmentDetail
     {
         public int Id { get; set; }
-        public string PropertyName { get; set; }
-        public PropertyType PropertyType { get; set; }
-
         public int CardId { get; set; }
-        public string Value { get; set; }
+        public Card Card { get; set; }
+        public int DeckId { get; set; }
+        public Deck Deck { get; set; }
     }
 }

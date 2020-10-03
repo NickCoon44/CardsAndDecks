@@ -37,6 +37,7 @@ namespace CardsAndDecks.Data
         public DbSet<Card> Cards { get; set; }
         public DbSet<CardProperty> CardProperties { get; set; }
         public DbSet<Deck> Decks { get; set; }
+        public DbSet<Assignment> Assignments { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

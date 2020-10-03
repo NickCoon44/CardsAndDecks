@@ -22,11 +22,10 @@ namespace CardsAndDecks.Data
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
+        [Required]
         public int TemplateId { get; set; }
         public string TemplateName { get; set; }
-        // [ForeignKey("Deck")]
-        // public int DeckId { get; set; }
-        // public virtual Deck Deck { get; set; }
         public virtual ICollection<CardProperty> PropertyList { get; set; }
+        public virtual ICollection<Assignment> AssignmentList { get; set; }
     }
 }

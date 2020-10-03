@@ -10,6 +10,6 @@ namespace CardsAndDecks.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        // public ICollection<CardDetail> DeckList { get; set; }
+        public ICollection<AssignmentDetail> AssignmentList { get; set; }
     }
 }

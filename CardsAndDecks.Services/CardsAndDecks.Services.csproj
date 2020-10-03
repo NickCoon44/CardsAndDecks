@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssignmentService.cs" />
     <Compile Include="CardService.cs" />
     <Compile Include="DeckService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,4 +1,4 @@
-﻿@model CardsAndDecks.Models.Card.CardDetail
+﻿@model CardsAndDecks.Models.CardDetail
 
 @{
     ViewBag.Title = "Details";
@@ -50,6 +50,23 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", "CardProperty", new { id = item.Id }, null)
+            </td>
+        </tr>
+    }
+</table>
+<h4>Decks</h4>
+<p>
+    @Html.ActionLink("Add a Deck", "Create", "Assignment", new { id = Model.Id, isCard = true }, null)
+</p>
+<table class="table">
+    @foreach (var item in Model.AssignmentList)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(c => item.Deck.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Remove", "Delete", "Assignment", new { assignmentId = item.Id, fromCard = true, objId = Model.Id }, null)
             </td>
         </tr>
     }

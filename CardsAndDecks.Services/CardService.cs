@@ -1,6 +1,5 @@
 ﻿using CardsAndDecks.Data;
 using CardsAndDecks.Models;
-using CardsAndDecks.Models.Card;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,13 +61,21 @@ namespace CardsAndDecks.Services
                         Name = entity.Name,
                         TemplateId = entity.TemplateId,
                         TemplateName = entity.TemplateName,
-                        PropertyList = entity.PropertyList.Select(t => new CardPropDetail
+                        PropertyList = entity.PropertyList.Select(p => new CardPropDetail
                         {
-                            Id = t.Id,
-                            PropertyName = t.PropertyName,
-                            PropertyType = t.PropertyType,
-                            CardId = t.CardId,
-                            Value = t.Value
+                            Id = p.Id,
+                            PropertyName = p.PropertyName,
+                            PropertyType = p.PropertyType,
+                            CardId = p.CardId,
+                            Value = p.Value
+                        }).ToList(),
+                        AssignmentList = entity.AssignmentList.Select(a => new AssignmentDetail
+                        {
+                            Id = a.Id,
+                            CardId = a.Id,
+                            Card = a.Card,
+                            DeckId = a.DeckId,
+                            Deck = a.Deck
                         }).ToList()
                     };
             }
