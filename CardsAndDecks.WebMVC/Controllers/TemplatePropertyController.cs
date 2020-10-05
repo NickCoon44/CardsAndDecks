@@ -92,7 +92,7 @@ namespace CardsAndDecks.WebMVC.Controllers
 
             if (service.UpdateTemplateProperty(model))
             {
-                TempData["SaveResult"] = "The Property was updated.";
+                TempData["SaveResult"] = "The Property Name was updated.";
                 return RedirectToAction("Details", "Template", new { id = model.TemplateId });
             }
 

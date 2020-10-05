@@ -4,49 +4,57 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Model.Name Template</h2>
 
 <div>
-    <h4>TemplateSimple</h4>
+    @Html.HiddenFor(model => model.Id)
+
+    <h4>Category: N/A</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
     </dl>
 </div>
 
+@if (TempData.ContainsKey("SaveEdit"))
+{
+    <div class="alert alert-success fade in" role="alert">
+
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveEdit"]
+    </div>
+}
+
 <table class="table">
+    <tr>
+        <td>
+            <p>Name</p>
+        </td>
+        <td>
+            <p>Text</p>
+        </td>
+    </tr>
     @foreach (var item in Model.PropertyList)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(c => item.PropertyName)
-            </td>
-            <td>
-                @Html.DisplayFor(c => item.PropertyType)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", "TemplateProperty", new { id = item.Id }, null)
-            </td>
-        </tr>
+        if (item.PropertyName != "Name")
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(c => item.PropertyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(c => item.PropertyType)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "TemplateProperty", new { id = item.Id }, null)
+                </td>
+            </tr>
+        }
     }
 </table>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Template List", "Index") |
+    @Html.ActionLink("Delete Template", "Delete", new { id = Model.Id })
 </p>

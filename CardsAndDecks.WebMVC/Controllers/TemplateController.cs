@@ -82,7 +82,7 @@ namespace CardsAndDecks.WebMVC.Controllers
 
             if (service.UpdateTemplate(model))
             {
-                TempData["SaveResult"] = "The Template name was updated.";
+                TempData["SaveResult"] = "The Template Name was updated.";
                 return RedirectToAction("Index");
             }
 
@@ -107,7 +107,7 @@ namespace CardsAndDecks.WebMVC.Controllers
 
             service.DeleteTemplate(id);
 
-            TempData["SaveResult"] = "Your note was deleted";
+            TempData["SaveResult"] = "Template Deleted";
 
             return RedirectToAction("Index");
         }
