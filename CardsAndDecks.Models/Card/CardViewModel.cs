@@ -12,6 +12,7 @@ namespace CardsAndDecks.Models
     {
         public string CardName { get; set; }
         public int TemplateId { get; set; }
+        public string TemplateName { get; set; }
         public int CardId { get; set; }
         public IList<TemplatePropDetail> TemplatePropertyList { get; set; }
         public string[] Values { get; set; }

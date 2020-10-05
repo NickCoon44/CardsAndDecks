@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Create Properties</h2>
 
 @if (TempData.ContainsKey("SaveResult"))
 {
@@ -50,21 +50,26 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PropertyType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.PropertyType, "Select Property Type", new { htmlAttributes = new { @class = "form-control" } })
+                @foreach (var value in Enum.GetValues(Model.PropertyType.GetType()))
+                {
+                    @Html.RadioButtonFor(m => m.PropertyType, value)
+                    @Html.Label(value.ToString())
+                    <p>- Select if your Property is a @value.ToString() value.</p>
+                }
                 @Html.ValidationMessageFor(model => model.PropertyType, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Add" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index", "Template")
+    @Html.ActionLink("Done", "Index", "Template", null, new { onclick = "return confirm('Click OK to Create this Template. You will not be able to change its Properties later.');" })
 </div>
 
 @section Scripts {

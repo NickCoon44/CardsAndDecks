@@ -88,6 +88,7 @@ namespace CardsAndDecks.Services
                 var entity = ctx
                     .CardProperties
                     .Single(e => e.Id == propertyId);
+                var card = ctx.Cards.Find(entity.CardId);
 
                 return
                     new CardPropDetail
@@ -96,6 +97,7 @@ namespace CardsAndDecks.Services
                         PropertyName = entity.PropertyName,
                         PropertyType = entity.PropertyType,
                         CardId = entity.CardId,
+                        CardName = card.Name,
                         Value = entity.Value,
                     };
             }

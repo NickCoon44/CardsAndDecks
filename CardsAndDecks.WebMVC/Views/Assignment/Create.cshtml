@@ -4,14 +4,14 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Assign</h2>
+<h2>Deck Assignment</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>AssignmentViewModel</h4>
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.DeckId)
@@ -23,6 +23,7 @@
 
 @if (Model.IsCard)
 {
+    <h4>Select Decks to Add Card to</h4>
     <table class="table">
 
         @foreach (var item in Model.DeckList)
@@ -64,14 +65,14 @@ else
     </div>
 }
 
-@if (TempData.ContainsKey("SaveResult"))
+@if (TempData.ContainsKey("SaveAdd"))
 {
     <div class="alert alert-success fade in" role="alert">
 
         <button type="button" class="close" data-dismiss="alert">
             <span>&times;</span>
         </button>
-        @TempData["SaveResult"]
+        @TempData["SaveAdd"]
     </div>
 }
 

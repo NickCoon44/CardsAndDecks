@@ -10,6 +10,5 @@ namespace CardsAndDecks.Models
     {
         public int CardId { get; set; }
         public string Name { get; set; }
-        //public int DeckId { get; set; }
     }
 }

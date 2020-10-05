@@ -1,25 +1,27 @@
-﻿@model CardsAndDecks.Models.Card.CardPropEdit
+﻿@model CardsAndDecks.Models.CardEditViewModel
 
 @{
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>@Model.CardName</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    @Html.Hidden("CardName")
+    @Html.Hidden("PropertyName")
 
     <div class="form-horizontal">
-        <h4>CardPropEdit</h4>
+        <h4>Editing @Model.PropertyName</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.PropertyId)
         @Html.HiddenFor(model => model.CardId)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Value, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label(Model.PropertyName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Value, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Value, "", new { @class = "text-danger" })
@@ -35,7 +37,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Card Details", "Details", "Card", new { id = Model.CardId}, null )
 </div>
 
 @section Scripts {

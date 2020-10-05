@@ -4,70 +4,59 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>
+    @Model.CardName
+</h2>
 
+@if (TempData.ContainsKey("SaveResult"))
+{
+    <div class="alert alert-success fade in" role="alert">
+
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
+}
 
 @using (Html.BeginForm())
 {
     @Html.Hidden("TemplateId")
     @Html.Hidden("CardName")
+    @Html.Hidden("CardId")
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>CardViewModel</h4>
+        <h4>Template: @Model.TemplateName</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.CardName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DisplayFor(model => model.CardName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CardName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TemplateId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DisplayFor(model => model.TemplateId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TemplateId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CardId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DisplayFor(model => model.CardId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CardId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-
     </div>
+
     if (Model.TemplatePropertyList != null)
     {
         <tr>
             <td>
-                @Html.TextBoxFor(x => Model.TemplatePropertyList[0].PropertyName, new { @class = "form-control", @readonly = "readonly" })
+                @Html.DisplayFor(x => Model.TemplatePropertyList[0].PropertyName, new { @class = "form-control" })
             </td>
             <td>
                 @Html.TextBoxFor(x => Model.Values[0], new { @class = "form-control", @readonly = "readonly" })
             </td>
         </tr>
-        
+        <br />
+
         for (var i = 1; i < Model.TemplatePropertyList.Count(); i++)
         {
             <tr>
                 <td>
-                    @Html.TextBoxFor(x => Model.TemplatePropertyList[i].PropertyName, new { @class = "form-control", @readonly = "readonly" })
+                    @Html.DisplayFor(x => Model.TemplatePropertyList[i].PropertyName, new { @class = "form-control" })
                 </td>
+
                 <td>
-                    @Html.TextBoxFor(x => Model.TemplatePropertyList[i].PropertyType, new { @class = "form-control", @readonly = "readonly" })
-                </td>
-                <td>
-                    @Html.TextBoxFor(x => Model.Values[i], new { @class = "form-control" })
+                    @Html.EditorFor(x => Model.Values[i], new { htmlAttributes = new { placeholder = $"{Model.TemplatePropertyList[i].PropertyType.ToString()}" } })
                 </td>
             </tr>
+            <br />
+            <br />
 
         }
     }

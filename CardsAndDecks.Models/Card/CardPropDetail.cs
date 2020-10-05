@@ -14,6 +14,7 @@ namespace CardsAndDecks.Models
         public PropertyType PropertyType { get; set; }
 
         public int CardId { get; set; }
+        public string CardName { get; set; }
         public string Value { get; set; }
     }
 }

@@ -45,7 +45,7 @@ namespace CardsAndDecks.WebMVC.Controllers
 
             var svc = new AssignmentService();
             svc.CreateAssignment(assignment);
-            TempData["SaveResult"] = "Card Added to Deck";
+            TempData["SaveAdd"] = "Card Added to Deck";
             if (isCard)
             {
                 return RedirectToAction("Create", new { id = cardId, isCard = true });
@@ -60,10 +60,10 @@ namespace CardsAndDecks.WebMVC.Controllers
 
             if (fromCard)
             {
-                TempData["SaveResult"] = "Card Removed";
+                TempData["SaveRemove"] = "Card Removed";
                 return RedirectToAction("Details", "Card", new { id = objId });
             }
-            TempData["SaveResult"] = "Deck Removed";
+            TempData["SaveRemove"] = "Deck Removed";
             return RedirectToAction("Details", "Deck", new { id = objId });
         }
     }

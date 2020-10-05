@@ -4,59 +4,46 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Model.Name</h2>
 
 @Html.HiddenFor(model => model.TemplateId)
 <div>
-    <h4>CardDetail</h4>
+    <h4>@Model.TemplateName</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
+    @if (TempData.ContainsKey("SaveEdit"))
+    {
+        <div class="alert alert-success fade in" role="alert">
 
-        <dd>
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TemplateName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TemplateName)
-        </dd>
-
-    </dl>
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+            @TempData["SaveEdit"]
+        </div>
+    }
 </div>
 
 <table class="table">
     @foreach (var item in Model.PropertyList)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(c => item.PropertyName)
-            </td>
-            <td>
-                @Html.DisplayFor(c => item.Value)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", "CardProperty", new { id = item.Id }, null)
-            </td>
-        </tr>
+        if (item.PropertyName != "Name")
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(c => item.PropertyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(c => item.Value)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "CardProperty", new { id = item.Id }, null)
+                </td>
+            </tr>
+        }
     }
 </table>
 <h4>Decks</h4>
 <p>
-    @Html.ActionLink("Add a Deck", "Create", "Assignment", new { id = Model.Id, isCard = true }, null)
+    @Html.ActionLink("+ Add a Deck", "Create", "Assignment", new { id = Model.Id, isCard = true }, null)
 </p>
 <table class="table">
     @foreach (var item in Model.AssignmentList)
@@ -71,9 +58,18 @@
         </tr>
     }
 </table>
+@if (TempData.ContainsKey("SaveRemove"))
+{
+    <div class="alert alert-success fade in" role="alert">
+
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveRemove"]
+    </div>
+}
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index") |
-    @Html.ActionLink("Delete", "Delete", new { id = Model.Id })
+    @Html.ActionLink("Back to Card List", "Index") |
+    @Html.ActionLink("Delete Card", "Delete", new { id = Model.Id })
 </p>

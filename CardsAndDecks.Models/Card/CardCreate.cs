@@ -10,7 +10,9 @@ namespace CardsAndDecks.Models
     public class CardCreate
     {
         [Required]
+        [Display(Name = "Card Name")]
         public string Name { get; set; }
+        [Display(Name = "Select Template")]
         public int TemplateId { get; set; }
         //public int DeckId { get; set; }
         public ICollection<CardPropCreate> PropertyList { get; set; }

@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace CardsAndDecks.Models
 {
-    public class TemplatePropEdit
+    public class CardEditViewModel
     {
         public int PropertyId { get; set; }
         public string PropertyName { get; set; }
-        public int TemplateId { get; set; }
+        public string Value { get; set; }
+        public int CardId { get; set; }
+        public string CardName { get; set; }
     }
 }

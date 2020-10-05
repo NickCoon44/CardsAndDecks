@@ -40,11 +40,11 @@ namespace CardsAndDecks.WebMVC.Controllers
             int id = service.CreateCard(model);
             if (id != 0)
             {
-                TempData["SaveResult"] = "Add Properties";
+                TempData["SaveResult"] = "Enter Values";
                 return RedirectToAction("Create", "CardProperty", new { cardId = id });
             };
 
-            ModelState.AddModelError("", "Template could not be created.");
+            ModelState.AddModelError("", "Card could not be created.");
 
             return View(model);
         }
