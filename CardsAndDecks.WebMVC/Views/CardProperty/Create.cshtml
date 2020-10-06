@@ -34,31 +34,33 @@
 
     if (Model.TemplatePropertyList != null)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(x => Model.TemplatePropertyList[0].PropertyName, new { @class = "form-control" })
-            </td>
-            <td>
-                @Html.TextBoxFor(x => Model.Values[0], new { @class = "form-control", @readonly = "readonly" })
-            </td>
-        </tr>
-        <br />
-
-        for (var i = 1; i < Model.TemplatePropertyList.Count(); i++)
-        {
+        <table class="table">
             <tr>
                 <td>
-                    @Html.DisplayFor(x => Model.TemplatePropertyList[i].PropertyName, new { @class = "form-control" })
+                    @Html.DisplayFor(x => Model.TemplatePropertyList[0].PropertyName, new { @class = "form-control" })
                 </td>
-
                 <td>
-                    @Html.EditorFor(x => Model.Values[i], new { htmlAttributes = new { placeholder = $"{Model.TemplatePropertyList[i].PropertyType.ToString()}" } })
+                    @Html.TextBoxFor(x => Model.Values[0], new { @class = "form-control", @readonly = "readonly" })
                 </td>
             </tr>
-            <br />
-            <br />
+            @*<br />*@
 
-        }
+            @for (var i = 1; i < Model.TemplatePropertyList.Count(); i++)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => Model.TemplatePropertyList[i].PropertyName, new { @class = "form-control" })
+                    </td>
+
+                    <td>
+                        @Html.EditorFor(x => Model.Values[i], new { htmlAttributes = new { placeholder = $"{Model.TemplatePropertyList[i].PropertyType.ToString()}" } })
+                    </td>
+                </tr>
+                @*<br />
+                    <br />*@
+
+            }
+        </table>
     }
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
