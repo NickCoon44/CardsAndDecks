@@ -63,7 +63,6 @@
     <Compile Include="Card\CardPropCreate.cs" />
     <Compile Include="Card\CardPropDetail.cs" />
     <Compile Include="Card\CardPropEdit.cs" />
-    <Compile Include="Card\CardEditViewModel.cs" />
     <Compile Include="Card\CardViewModel.cs" />
     <Compile Include="Deck\DeckDetail.cs" />
     <Compile Include="Deck\DeckEdit.cs" />

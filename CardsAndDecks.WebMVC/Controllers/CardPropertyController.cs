@@ -79,29 +79,23 @@ namespace CardsAndDecks.WebMVC.Controllers
         {
             var service = new CardService();
             var property = service.GetCardPropById(id);
-            var model = new CardEditViewModel
+            var model = new CardPropEdit
             {
-                PropertyName = property.PropertyName,
                 PropertyId = property.Id,
                 Value = property.Value,
                 CardId = property.CardId,
-                CardName = property.CardName
             };
+            ViewData["PropertyName"] = property.PropertyName;
+            ViewData["CardName"] = service.GetCardById(property.CardId).Name;
 
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, CardEditViewModel model)
+        public ActionResult Edit(int id, CardPropEdit model)
         {
             if (!ModelState.IsValid) return View(model);
-            var editModel = new CardPropEdit()
-            {
-                PropertyId = model.PropertyId,
-                Value = model.Value,
-                CardId = model.CardId
-            };
 
             if (model.PropertyId != id)
             {
@@ -111,7 +105,7 @@ namespace CardsAndDecks.WebMVC.Controllers
 
             var service = new CardService();
 
-            if (service.UpdateCardProperty(editModel))
+            if (service.UpdateCardProperty(model))
             {
                 TempData["SaveEdit"] = "The Property was updated.";
                 return RedirectToAction("Details", "Card", new { id = model.CardId });
