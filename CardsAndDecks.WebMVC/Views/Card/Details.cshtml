@@ -50,7 +50,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(c => item.Deck.Name)
+                @Html.ActionLink(item.Deck.Name, "Details", "Deck", new { id = item.DeckId }, null)
             </td>
             <td>
                 @Html.ActionLink("Remove", "Delete", "Assignment", new { assignmentId = item.Id, fromCard = true, objId = Model.Id }, null)

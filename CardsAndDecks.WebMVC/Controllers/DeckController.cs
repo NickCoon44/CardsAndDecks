@@ -61,6 +61,7 @@ namespace CardsAndDecks.WebMVC.Controllers
                 Id = detail.Id,
                 Name = detail.Name
             };
+
             return View(model);
         }
 

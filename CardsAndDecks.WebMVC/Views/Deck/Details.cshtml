@@ -4,32 +4,45 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Model.Name</h2>
 
 <div>
-    <h4>DeckDetail</h4>
+    <h4>Card List</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
     </dl>
+    @if (TempData.ContainsKey("SaveResult"))
+    {
+        <div class="alert alert-success fade in" role="alert">
+
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+            @TempData["SaveResult"]
+        </div>
+    }
+
 </div>
 <p>
-    @Html.ActionLink("Add a Card", "Create", "Assignment", new { id = Model.Id, isCard = false }, null)
+    @Html.ActionLink("+ Add a Card", "Create", "Assignment", new { id = Model.Id, isCard = false }, null)
 </p>
 
 <table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Card")
+        </th>
+        <th>
+            @Html.DisplayName("Template")
+        </th>
+        <th></th>
+    </tr>
+
     @foreach (var item in Model.AssignmentList)
     {
         <tr>
             <td>
-                @Html.DisplayFor(c => item.Card.Name)
+                @Html.ActionLink(item.Card.Name, "Details", "Card", new { id = item.CardId }, null)
             </td>
             <td>
                 @Html.DisplayFor(c => item.Card.TemplateName)
@@ -37,12 +50,13 @@
             <td>
                 @Html.ActionLink("Remove", "Delete", "Assignment", new { assignmentId = item.Id, fromCard = false, objId = Model.Id }, null)
             </td>
+
         </tr>
     }
 </table>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Deck List", "Index") |
+    @Html.ActionLink("Edit Deck Name", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Delete Deck", "Delete", new { id = Model.Id })
 </p>

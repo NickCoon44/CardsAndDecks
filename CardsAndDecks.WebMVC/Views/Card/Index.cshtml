@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Card List</h2>
+<h2>Cards</h2>
 
 <p>
-    @Html.ActionLink("Create New Card", "Create")
+    @Html.ActionLink("+ New Card", "Create")
 </p>
 
 @if (TempData.ContainsKey("SaveResult"))
@@ -37,13 +37,12 @@
         @Html.HiddenFor(modelItem => item.TemplateId)
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.ActionLink(item.Name, "Details", new { id = item.Id })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TemplateName)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id }) 
             </td>

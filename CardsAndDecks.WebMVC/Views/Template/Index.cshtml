@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Template List</h2>
+<h2>Templates</h2>
 
 <p>
     @Html.ActionLink("+ Create New Template", "Create")
@@ -23,24 +23,16 @@
 
 <table class="table">
 
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-
-    </tr>
-
     @foreach (var item in Model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.ActionLink(item.Name, "Details", new { id = item.Id })
             </td>
             <td>
                 @Html.HiddenFor(modelItem => item.Id)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>

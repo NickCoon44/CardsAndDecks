@@ -15,7 +15,7 @@ namespace CardsAndDecks.WebMVC.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Well,";
 
             return View();
         }
