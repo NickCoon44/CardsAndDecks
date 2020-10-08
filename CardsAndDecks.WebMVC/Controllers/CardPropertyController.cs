@@ -107,7 +107,7 @@ namespace CardsAndDecks.WebMVC.Controllers
 
             if (service.UpdateCardProperty(model))
             {
-                TempData["SaveEdit"] = "The Property was updated.";
+                TempData["SaveResult"] = "The Property was updated.";
                 return RedirectToAction("Details", "Card", new { id = model.CardId });
             }
 

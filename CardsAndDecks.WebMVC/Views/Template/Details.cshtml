@@ -4,50 +4,52 @@
     ViewBag.Title = "Details";
 }
 
-<h2>@Model.Name Template</h2>
+<div class="page-header">
+    <h2><b>@Model.Name Template </b><a href="~/Template/Edit/@Model.Id" class="btn btn-default">Edit</a></h2>
+    <h4>Category: N/A</h4>
+</div>
 
 <div>
     @Html.HiddenFor(model => model.Id)
-
-    <h4>Category: N/A</h4>
     <hr />
     <dl class="dl-horizontal">
     </dl>
 </div>
 
-@if (TempData.ContainsKey("SaveEdit"))
+@if (TempData.ContainsKey("SaveResult"))
 {
     <div class="alert alert-success fade in" role="alert">
 
         <button type="button" class="close" data-dismiss="alert">
             <span>&times;</span>
         </button>
-        @TempData["SaveEdit"]
+        @TempData["SaveResult"]
     </div>
 }
 
-<table class="table">
-    <tr>
-        <th>
-            <p>Name</p>
-        </th>
-        <th>
-            <p>Text</p>
-        </th>
-    </tr>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="col-md-4">Property Name</th>
+            <th></th>
+        </tr>
+    </thead>
     @foreach (var item in Model.PropertyList)
     {
         if (item.PropertyName != "Name")
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(c => item.PropertyName)
+                <td class="col-md-4">
+                    @if (item.PropertyType == 0)
+                    {
+                        <small style="color: red;">Aa</small>
+                    }
+                    else
+                    {<small style="color: red;">#</small>}
+                    <b>@Html.DisplayFor(c => item.PropertyName)</b>
                 </td>
                 <td>
-                    @Html.DisplayFor(c => item.PropertyType)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", "TemplateProperty", new { id = item.Id }, null)
+                    @Html.ActionLink("Edit", "Edit", "TemplateProperty", new { id = item.Id }, new { @class = "btn btn-default" })
                 </td>
             </tr>
         }
@@ -55,6 +57,6 @@
 </table>
 
 <p>
-    @Html.ActionLink("Back to Template List", "Index") |
-    @Html.ActionLink("Delete Template", "Delete", new { id = Model.Id })
+    @Html.ActionLink("Delete Template", "Delete", new { id = Model.Id }, new { @class = "btn btn-danger" })
+    @Html.ActionLink("Back to Template List", "Index", null, new { @class = "btn btn-default" })
 </p>

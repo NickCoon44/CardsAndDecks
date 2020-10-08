@@ -87,7 +87,7 @@ namespace CardsAndDecks.WebMVC.Controllers
             if (service.UpdateCard(model))
             {
                 TempData["SaveResult"] = "The Card name was updated.";
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = model.CardId});
             }
 
             ModelState.AddModelError("", "The Card name could not be updated.");

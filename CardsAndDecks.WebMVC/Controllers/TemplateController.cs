@@ -83,7 +83,7 @@ namespace CardsAndDecks.WebMVC.Controllers
             if (service.UpdateTemplate(model))
             {
                 TempData["SaveResult"] = "The Template Name was updated.";
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = model.TemplateId});
             }
 
             ModelState.AddModelError("", "The Template name could not be updated.");

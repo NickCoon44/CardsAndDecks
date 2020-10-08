@@ -4,51 +4,50 @@
     ViewBag.Title = "Details";
 }
 
-<h2>@Model.Name</h2>
-
-<div>
+<div class="page-header">
+    <h2><b>@Model.Name </b><a href="~/Template/Edit/@Model.Id" class="btn btn-default">Edit</a></h2>
     <h4>Card List</h4>
-    <hr />
-    <dl class="dl-horizontal">
-    </dl>
-    @if (TempData.ContainsKey("SaveResult"))
-    {
-        <div class="alert alert-success fade in" role="alert">
-
-            <button type="button" class="close" data-dismiss="alert">
-                <span>&times;</span>
-            </button>
-            @TempData["SaveResult"]
-        </div>
-    }
-
 </div>
+
+@if (TempData.ContainsKey("SaveResult"))
+{
+    <div class="alert alert-success fade in" role="alert">
+
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
+}
+
 <p>
-    @Html.ActionLink("+ Add a Card", "Create", "Assignment", new { id = Model.Id, isCard = false }, null)
+    @Html.ActionLink("+ Add a Card", "Create", "Assignment", new { id = Model.Id, isCard = false }, new { @class="btn btn-info"})
 </p>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("Card")
-        </th>
-        <th>
-            @Html.DisplayName("Template")
-        </th>
-        <th></th>
-    </tr>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Card")
+            </th>
+            <th>
+                @Html.DisplayName("Template")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
 
     @foreach (var item in Model.AssignmentList)
     {
         <tr>
             <td>
-                @Html.ActionLink(item.Card.Name, "Details", "Card", new { id = item.CardId }, null)
+                <b>@Html.ActionLink(item.Card.Name, "Details", "Card", new { id = item.CardId }, null)</b>
             </td>
             <td>
                 @Html.DisplayFor(c => item.Card.TemplateName)
             </td>
             <td>
-                @Html.ActionLink("Remove", "Delete", "Assignment", new { assignmentId = item.Id, fromCard = false, objId = Model.Id }, null)
+                @Html.ActionLink("Remove", "Delete", "Assignment", new { assignmentId = item.Id, fromCard = false, objId = Model.Id }, new { @class="btn btn-danger"})
             </td>
 
         </tr>
@@ -56,7 +55,6 @@
 </table>
 
 <p>
-    @Html.ActionLink("Back to Deck List", "Index") |
-    @Html.ActionLink("Edit Deck Name", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Delete Deck", "Delete", new { id = Model.Id })
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class="btn btn-danger"})
+    @Html.ActionLink("Back to Deck List", "Index", null, new { @class="btn btn-default"}) 
 </p>

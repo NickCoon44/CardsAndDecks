@@ -4,56 +4,75 @@
     ViewBag.Title = "Details";
 }
 
-<h2>@Model.Name</h2>
-
-@Html.HiddenFor(model => model.TemplateId)
-<div>
+<div class="page-header">
+    <h2><b>@Model.Name <a href="~/Card/Edit/@Model.Id" class="btn btn-default">Edit</a></b></h2>
     <h4>@Model.TemplateName</h4>
-    <hr />
-    @if (TempData.ContainsKey("SaveEdit"))
-    {
-        <div class="alert alert-success fade in" role="alert">
-
-            <button type="button" class="close" data-dismiss="alert">
-                <span>&times;</span>
-            </button>
-            @TempData["SaveEdit"]
-        </div>
-    }
 </div>
 
-<table class="table">
+
+@Html.HiddenFor(model => model.TemplateId)
+
+@if (TempData.ContainsKey("SaveResult"))
+{
+    <div class="alert alert-success fade in" role="alert">
+
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
+}
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Properties</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
     @foreach (var item in Model.PropertyList)
     {
         if (item.PropertyName != "Name")
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(c => item.PropertyName)
+                    <b>@Html.DisplayFor(c => item.PropertyName)</b>
+                    @if (item.PropertyType == 0)
+                    {
+                        <small style="color: red;">Aa</small>
+                    }
+                    else
+                    {<small style="color: red;">#</small>}
                 </td>
                 <td>
                     @Html.DisplayFor(c => item.Value)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", "CardProperty", new { id = item.Id }, null)
+                    @Html.ActionLink("Edit", "Edit", "CardProperty", new { id = item.Id }, new { @class="btn btn-default"})
                 </td>
             </tr>
         }
     }
 </table>
-<h4>Decks</h4>
-<p>
-    @Html.ActionLink("+ Add a Deck", "Create", "Assignment", new { id = Model.Id, isCard = true }, null)
-</p>
-<table class="table">
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Decks</th>
+            <th>@Html.ActionLink("+ Add a Deck", "Create", "Assignment", new { id = Model.Id, isCard = true }, new { @class = "btn btn-info" })</th>
+        </tr>
+    </thead>
+
     @foreach (var item in Model.AssignmentList)
     {
         <tr>
             <td>
-                @Html.ActionLink(item.Deck.Name, "Details", "Deck", new { id = item.DeckId }, null)
+                <b>@Html.ActionLink(item.Deck.Name, "Details", "Deck", new { id = item.DeckId }, null)</b>
             </td>
             <td>
-                @Html.ActionLink("Remove", "Delete", "Assignment", new { assignmentId = item.Id, fromCard = true, objId = Model.Id }, null)
+                @Html.ActionLink("Remove", "Delete", "Assignment", new { assignmentId = item.Id, fromCard = true, objId = Model.Id }, new { @class="btn btn-danger"})
             </td>
         </tr>
     }
@@ -70,6 +89,6 @@
 }
 
 <p>
-    @Html.ActionLink("Back to Card List", "Index") |
-    @Html.ActionLink("Delete Card", "Delete", new { id = Model.Id })
+    @Html.ActionLink("Delete Card", "Delete", new { id = Model.Id }, new { @class = "btn btn-danger" })
+    @Html.ActionLink("Back to Card List", "Index", null, new { @class="btn btn-default"}) 
 </p>

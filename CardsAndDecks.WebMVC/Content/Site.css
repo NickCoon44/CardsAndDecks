@@ -22,3 +22,38 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.jumbotron {
+    background-color: lightblue;
+    border: black solid;
+    border-width: 0 3px 3px;
+}
+
+.container {
+    padding: 1em;
+}
+
+.homepage-nav {
+    background-color: lightblue;
+    border: black solid;
+    border-width: 3px;
+    min-height: 150px;
+    padding: 0 1em;
+}
+
+    .homepage-nav a:hover {
+        text-decoration: none;
+    }
+
+    .homepage-nav a {
+        display: block;
+        font-size: large;
+    }
+
+    thead{
+        background-color: black;
+        color: white;
+    }
+    th{
+        font-size: 24px;
+    }

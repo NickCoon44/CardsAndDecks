@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Templates</h2>
+<h2 class="page-header"><b>Templates</b></h2>
 
 <p>
-    @Html.ActionLink("+ Create New Template", "Create")
+    @Html.ActionLink("+ New Template", "Create", null, new { @class="btn btn-info"})
 </p>
 
 @if (TempData.ContainsKey("SaveResult"))
@@ -21,20 +21,19 @@
     </div>
 }
 
-<table class="table">
+<table class="table table-striped">
 
     @foreach (var item in Model)
     {
         <tr>
             <td>
-                @Html.ActionLink(item.Name, "Details", new { id = item.Id })
+                <b>@Html.ActionLink(item.Name, "Details", new { id = item.Id })</b>
             </td>
             <td>
                 @Html.HiddenFor(modelItem => item.Id)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class="btn btn-danger"})
             </td>
         </tr>
     }

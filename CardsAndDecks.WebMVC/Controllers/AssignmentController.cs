@@ -60,7 +60,7 @@ namespace CardsAndDecks.WebMVC.Controllers
 
             if (fromCard)
             {
-                TempData["SaveResult"] = "Removed from Deck";
+                TempData["SaveRemove"] = "Removed from Deck";
                 return RedirectToAction("Details", "Card", new { id = objId });
             }
             TempData["SaveResult"] = "Card Removed";
