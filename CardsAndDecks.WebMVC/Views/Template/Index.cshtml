@@ -4,11 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2 class="page-header"><b>Templates</b></h2>
-
-<p>
-    @Html.ActionLink("+ New Template", "Create", null, new { @class="btn btn-info"})
-</p>
+<h2 class="page-header">
+    <b>Templates </b>
+    @Html.ActionLink("+ New Template", "Create", null, new { @class = "btn btn-info" })
+</h2>
 
 @if (TempData.ContainsKey("SaveResult"))
 {
@@ -33,7 +32,7 @@
                 @Html.HiddenFor(modelItem => item.Id)
             </td>
             <td>
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class="btn btn-danger"})
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
             </td>
         </tr>
     }

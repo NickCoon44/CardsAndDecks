@@ -36,7 +36,7 @@ namespace CardsAndDecks.WebMVC.Controllers
 
             if (id != 0)
             {
-                TempData["SaveResult"] = "Template created. Add Properties.";
+                TempData["SaveResult"] = "Add Properties.";
                 return RedirectToAction("Create", "TemplateProperty", new { templateId = id });
             };
 

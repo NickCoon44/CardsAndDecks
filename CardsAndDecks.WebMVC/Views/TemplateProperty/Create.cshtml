@@ -4,8 +4,61 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create Properties</h2>
+<div class="page-header">
+    <h2><b>Create Properties</b></h2>
+    <h4>@Model.TemplateName</h4>
+</div>
 
+@Html.HiddenFor(model => model.TemplateId)
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" style="min-height: 25em;">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.PropertyName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PropertyName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PropertyName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PropertyType, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @foreach (var value in Enum.GetValues(Model.PropertyType.GetType()))
+                    {
+                        @Html.RadioButtonFor(m => m.PropertyType, value)
+                        @Html.Label(value.ToString())
+                        <p>- Select if your Property is a @value.ToString() value.</p>
+                    }
+                    @Html.ValidationMessageFor(model => model.PropertyType, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-6">
+                    <input type="submit" value="Add" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <p><b>List of Properties</b></p>
+            @{
+                @:<ol>
+                    foreach (var property in Model.PropertyList)
+                    {
+                        @:<li>@property.PropertyName</li>
+                    }
+                @:</ol>
+            }
+        </div>
+
+    </div>
+
+}
 @if (TempData.ContainsKey("SaveResult"))
 {
     <div class="alert alert-success fade in" role="alert">
@@ -17,60 +70,8 @@
     </div>
 }
 
-@Html.HiddenFor(model => model.TemplateId)
+@Html.ActionLink("Done", "Index", "Template", null, new { onclick = "return confirm('Click OK to Create this Template. You will not be able to change its Properties later.');", @class = "btn btn-info" })
 
-
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>@Model.TemplateName</h4>
-        <hr />
-        @{
-            @:<ol>
-                foreach (var property in Model.PropertyList)
-                {
-                    @:<li>@property.PropertyName</li>
-                }
-            @:</ol>
-        }
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PropertyName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PropertyName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PropertyName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PropertyType, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @foreach (var value in Enum.GetValues(Model.PropertyType.GetType()))
-                {
-                    @Html.RadioButtonFor(m => m.PropertyType, value)
-                    @Html.Label(value.ToString())
-                    <p>- Select if your Property is a @value.ToString() value.</p>
-                }
-                @Html.ValidationMessageFor(model => model.PropertyType, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Add" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Done", "Index", "Template", null, new { onclick = "return confirm('Click OK to Create this Template. You will not be able to change its Properties later.');" })
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

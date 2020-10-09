@@ -4,11 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2 class="page-header"><b>Cards</b></h2>
-
-<p>
-    @Html.ActionLink("+ New Card", "Create", null, new { @class = "btn btn-info"})
-</p>
+<h2 class="page-header">
+    <b>Cards </b>
+    @Html.ActionLink("+ New Card", "Create", null, new { @class = "btn btn-info" })
+</h2>
 
 @if (TempData.ContainsKey("SaveResult"))
 {
@@ -20,8 +19,6 @@
         @TempData["SaveResult"]
     </div>
 }
-
-
 
 <table class="table table-striped">
     <thead>

@@ -4,18 +4,20 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>@ViewData["CardName"]</h2>
+<div class="page-header">
+    <h2><b>@ViewData["CardName"]</b></h2>
+    <h4>Editing @ViewData["PropertyName"]</h4>
+</div>
 
 
 @using (Html.BeginForm())
 {
+    <hr />
     @Html.AntiForgeryToken()
     @Html.Hidden("CardName")
     @Html.Hidden("PropertyName")
 
     <div class="form-horizontal">
-        <h4>Editing @ViewData["PropertyName"]</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.PropertyId)
         @Html.HiddenFor(model => model.CardId)
@@ -30,14 +32,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-info" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to Card Details", "Details", "Card", new { id = Model.CardId}, null )
+    @Html.ActionLink("Back to Card", "Details", "Card", new { id = Model.CardId }, new { @class = "btn btn-default" })
 </div>
 
 @section Scripts {
