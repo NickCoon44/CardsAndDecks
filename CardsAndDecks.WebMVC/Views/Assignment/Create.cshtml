@@ -4,74 +4,71 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Deck Assignment</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.DeckId)
-        @Html.HiddenFor(model => model.CardId)
-        @Html.HiddenFor(model => model.IsCard)
-
-    </div>
-}
+@Html.HiddenFor(model => model.DeckId)
+@Html.HiddenFor(model => model.CardId)
+@Html.HiddenFor(model => model.IsCard)
 
 @if (Model.IsCard)
 {
-    <h4>Select Decks to Add Card to</h4>
+    <div class="page-header">
+        <h2><b>Deck Assignment</b></h2>
+        <h4>Select Decks to Add Card to</h4>
+    </div>
     <table class="table">
 
         @foreach (var item in Model.DeckList)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    <b>@Html.ActionLink(item.Name, "Details", "Deck", new { id = item.Id }, null)</b>
                 </td>
                 <td>
-                    @Html.ActionLink("+ Add", "CreateAssignment", new { deckId = item.Id, cardId = Model.CardId, isCard = true })
+                    @Html.ActionLink("+ Add", "CreateAssignment", new { deckId = item.Id, cardId = Model.CardId, isCard = true }, new { @class = "btn btn-info" })
                 </td>
             </tr>
         }
     </table>
     <div>
-        @Html.ActionLink("Back to Card", "Details", "Card", new { id = Model.CardId }, null)
+        @Html.ActionLink("Back to Card", "Details", "Card", new { id = Model.CardId }, new { @class = "btn btn-default" })
     </div>
 }
 else
 {
-    <h4>Select Cards to Add to Deck</h4>
+    <div class="page-header">
+        <h2><b>Deck Assignment</b></h2>
+        <h4>Select Cards to Add to Deck</h4>
+    </div>
     <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayName("Card")
-            </th>
-            <th>
-                @Html.DisplayName("Template")
-            </th>
-            <th></th>
-        </tr>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Card")
+                </th>
+                <th>
+                    @Html.DisplayName("Template")
+                </th>
+                <th></th>
+            </tr>
+        </thead>
         @foreach (var item in Model.CardList)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    <b>@Html.ActionLink(item.Name, "Details", "Card", new { id = item.Id }, null)</b>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TemplateName)
                 </td>
                 <td>
-                    @Html.ActionLink("+ Add", "CreateAssignment", new { deckId = Model.DeckId, cardId = item.Id, isCard = false })
+                    @Html.ActionLink("+ Add", "CreateAssignment", new { deckId = Model.DeckId, cardId = item.Id, isCard = false }, new { @class = "btn btn-info" })
                 </td>
             </tr>
         }
     </table>
     <div>
-        @Html.ActionLink("Back to Deck", "Details", "Deck", new { id = Model.DeckId }, null)
+        @Html.ActionLink("Back to Deck", "Details", "Deck", new { id = Model.DeckId }, new { @class = "btn btn-default" })
     </div>
 }
 
