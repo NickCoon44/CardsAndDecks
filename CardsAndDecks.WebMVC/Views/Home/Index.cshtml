@@ -5,31 +5,30 @@
 <div class="jumbotron">
     <h1>Cards And Decks</h1>
     <p class="lead">Have you ever wanted to create custom cards, then add them to a deck? And then edit that deck? Well now you can! WOW!</p>
-    @Html.ActionLink("Learn More About This", "About")
+    @Html.ActionLink("Learn More", "About", null, new { @class = "btn btn-info" })
 </div>
 
 <div class="row">
     <div class="col-md-4 container">
-        <div class="homepage-nav">
-            <a href="/Template/Create" class="btn btn-default">Create a Template</a>
+        <div class="card">
+            <a href="/Template/Create" class="btn-card">Create a Template</a>
             <p>
-                How do we know what kind of cards we are creating? What properties do they have? Create Templates for your cards to define their properties.
+                How do we know what kind of cards we are creating? Create Templates for your cards to define their properties.
             </p>
         </div>
     </div>
     <div class="col-md-4 container">
-        <div class="homepage-nav">
-            <a href="/Card/Create" class="btn btn-default">Create a Card</a>
+        <div class="card">
+            <a href="/Card/Create" class="btn-card">Create a Card</a>
             <p>If you have a Template created already, go ahead and make Cards here!</p>
         </div>
     </div>
     <div class="col-md-4 container">
-        <div class="homepage-nav">
-            <a href="/Deck/Create" class="btn btn-default">Create a Deck</a>
+        <div class="card">
+            <a href="/Deck/Create" class="btn-card">Create a Deck</a>
             <p>Organize your cards into Decks!</p>
         </div>
     </div>
-
 </div>
 
 @Scripts.Render("~/bundles/bootstrap")

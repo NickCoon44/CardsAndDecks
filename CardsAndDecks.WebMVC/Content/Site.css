@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: lightgray;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -24,30 +25,43 @@ textarea {
 }
 
 .jumbotron {
-    background-color: lightblue;
+    background-color: #1F2124;
     border: black solid;
     border-width: 0 3px 3px;
+    color: white;
 }
 
-.container {
+.container{
     padding: 1em;
 }
 
-.homepage-nav {
-    background-color: lightblue;
-    border: black solid;
-    border-width: 3px;
-    min-height: 150px;
-    padding: 0 1em;
+.card {
+    padding: 20px;
+    background: #1F2124;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    min-height: 250px;
 }
 
-    .homepage-nav a:hover {
-        text-decoration: none;
-    }
+.btn-card {
+    font-size: 25px;
+    display: block;
+    background: #F6B352;
+    color: white;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    text-shadow: 1px 1px 1px #333;
+    transition: all 200ms ease-in-out;
+    text-decoration: none;
+}
 
-    .homepage-nav a {
-        display: block;
-        font-size: large;
+    .btn-card:hover {
+        background: #F68657;
+        text-decoration: none;
+        text-shadow: 1px 1px 1px white;
     }
 
     thead{

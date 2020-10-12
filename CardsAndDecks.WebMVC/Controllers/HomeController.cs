@@ -22,7 +22,7 @@ namespace CardsAndDecks.WebMVC.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "This will be updated with my personal info later.";
 
             return View();
         }
