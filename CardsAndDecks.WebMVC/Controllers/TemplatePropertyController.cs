@@ -10,6 +10,8 @@ using System.Web.Mvc;
 
 namespace CardsAndDecks.WebMVC.Controllers
 {
+    [Authorize]
+
     public class TemplatePropertyController : Controller
     {
         // GET: TemplateProperty

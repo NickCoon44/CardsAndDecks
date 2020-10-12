@@ -8,6 +8,8 @@ using System.Web.Mvc;
 
 namespace CardsAndDecks.WebMVC.Controllers
 {
+    [Authorize]
+
     public class TemplateController : Controller
     {
         // GET: Template

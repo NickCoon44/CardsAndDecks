@@ -8,8 +8,10 @@ using System.Web.Mvc;
 
 namespace CardsAndDecks.WebMVC.Controllers
 {
+    [Authorize]
     public class CardPropertyController : Controller
     {
+
         // GET: CardProperty
         public ActionResult Index()
         {
