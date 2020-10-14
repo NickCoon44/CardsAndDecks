@@ -196,6 +196,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\SairaExtraCondensed-Bold.ttf" />
+    <Content Include="fonts\SairaExtraCondensed-Regular.ttf" />
+    <Content Include="fonts\MeriendaOne-Regular.ttf" />
     <None Include="Properties\PublishProfiles\CardsAndDecks - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

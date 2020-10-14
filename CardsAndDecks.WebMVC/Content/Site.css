@@ -1,7 +1,12 @@
-﻿body {
+﻿@font-face {
+    font-family: "Saira Extra Condensed";
+    src:url('/fonts/MeriendaOne-Regular.ttf');
+}
+body {
     padding-top: 50px;
     padding-bottom: 20px;
     background-color: lightgray;
+    font-family: "Saira Extra Condensed", sans-serif;
 }
 
 /* Set padding to keep content from hitting the edges */
