@@ -9,6 +9,15 @@ body {
     font-family: "Saira Extra Condensed", sans-serif;
 }
 
+table {
+    background-color: #d8cfb3;
+}
+
+.navbar {
+    background-image: url('/Assets/navbkg.png');
+    background-repeat: repeat-x;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -30,7 +39,7 @@ textarea {
 }
 
 .jumbotron {
-    background-color: #1F2124;
+    background-color: #513322;
     border: black solid;
     border-width: 0 3px 3px;
     color: white;
@@ -42,7 +51,7 @@ textarea {
 
 .card {
     padding: 20px;
-    background: #1F2124;
+    background: #513322;
     box-shadow: 0 0 20px rgba(0,0,0,0.4);
     border-radius: 5px;
     text-align: center;
