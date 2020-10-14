@@ -20,5 +20,6 @@ namespace CardsAndDecks.Data
         [ForeignKey("Card")]
         public int CardId { get; set; }
         public virtual Card Card { get; set; }
+        public int NumberOfAssignments { get; set; }
     }
 }

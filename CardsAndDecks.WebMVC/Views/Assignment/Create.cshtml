@@ -4,19 +4,27 @@
     ViewBag.Title = "Create";
 }
 
-
-
 @Html.HiddenFor(model => model.DeckId)
 @Html.HiddenFor(model => model.CardId)
 @Html.HiddenFor(model => model.IsCard)
+<hr />
+@if (TempData.ContainsKey("SaveResult"))
+{
+    <div class="alert alert-success fade in" role="alert">
 
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
+}
 @if (Model.IsCard)
 {
     <div class="page-header">
         <h2><b>Deck Assignment</b></h2>
-        <h4>Select Decks to Add Card to</h4>
+        <h4>Add @Model.CardName to which decks?</h4>
     </div>
-    <table class="table">
+    <table class="table table-striped">
 
         @foreach (var item in Model.DeckList)
         {
@@ -31,16 +39,16 @@
         }
     </table>
     <div>
-        @Html.ActionLink("Back to Card", "Details", "Card", new { id = Model.CardId }, new { @class = "btn btn-default" })
+        @Html.ActionLink($"Back to {Model.CardName}", "Details", "Card", new { id = Model.CardId }, new { @class = "btn btn-default" })
     </div>
 }
 else
 {
     <div class="page-header">
         <h2><b>Deck Assignment</b></h2>
-        <h4>Select Cards to Add to Deck</h4>
+        <h4>Select Cards to Add to @Model.DeckName</h4>
     </div>
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>
@@ -68,18 +76,7 @@ else
         }
     </table>
     <div>
-        @Html.ActionLink("Back to Deck", "Details", "Deck", new { id = Model.DeckId }, new { @class = "btn btn-default" })
-    </div>
-}
-
-@if (TempData.ContainsKey("SaveAdd"))
-{
-    <div class="alert alert-success fade in" role="alert">
-
-        <button type="button" class="close" data-dismiss="alert">
-            <span>&times;</span>
-        </button>
-        @TempData["SaveAdd"]
+        @Html.ActionLink($"Back to {Model.DeckName}", "Details", "Deck", new { id = Model.DeckId }, new { @class = "btn btn-default" })
     </div>
 }
 

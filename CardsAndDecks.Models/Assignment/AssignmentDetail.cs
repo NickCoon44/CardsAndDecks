@@ -14,5 +14,6 @@ namespace CardsAndDecks.Models
         public Card Card { get; set; }
         public int DeckId { get; set; }
         public Deck Deck { get; set; }
+        public int NumberOfAssignments { get; set; }
     }
 }

@@ -14,23 +14,28 @@ namespace CardsAndDecks.WebMVC.Controllers
         // GET: Create
         public ActionResult Create(int id, bool isCard)
         {
+            var deckService = new DeckService();
+            var cardService = new CardService();
             if (isCard)
             {
-                var deckService = new DeckService();
                 var allDecks = deckService.GetDecks();
+                var card = cardService.GetCardById(id);
                 var cardToDeck = new AssignmentViewModel(isCard)
                 {
                     CardId = id,
-                    DeckList = allDecks,
+                    CardName = card.Name,
+                    DeckList = allDecks
                 };
                 return View(cardToDeck);
             }
-            var cardService = new CardService();
+
             var allCards = cardService.GetCards();
+            var deck = deckService.GetDeckById(id);
             var deckToCard = new AssignmentViewModel(isCard)
             {
                 DeckId = id,
-                CardList = allCards,
+                DeckName = deck.Name,
+                CardList = allCards
             };
             return View(deckToCard);
         }
@@ -38,20 +43,31 @@ namespace CardsAndDecks.WebMVC.Controllers
         // GET: Create
         public ActionResult CreateAssignment(int deckId, int cardId, bool isCard)
         {
-            var assignment = new AssignmentCreate()
-            {
-                DeckId = deckId,
-                CardId = cardId
-            };
-
             var svc = new AssignmentService();
-            svc.CreateAssignment(assignment);
-            TempData["SaveAdd"] = "Card Added to Deck";
+            if (!svc.CheckAssignment(cardId, deckId))
+            {
+                var assignment = new AssignmentCreate()
+                {
+                    DeckId = deckId,
+                    CardId = cardId
+                };
+
+                svc.CreateAssignment(assignment);
+            }
+
+            TempData["SaveResult"] = "Card Added to Deck";
             if (isCard)
             {
                 return RedirectToAction("Create", new { id = cardId, isCard = true });
             }
             return RedirectToAction("Create", new { id = deckId, isCard = false });
+        }
+
+        public ActionResult QuickCreate(int deckId, int cardId)
+        {
+            var svc = new AssignmentService();
+            svc.CheckAssignment(cardId, deckId);
+            return RedirectToAction("Details", "Deck", new { id = deckId});
         }
 
         public ActionResult Delete(int assignmentId, bool fromCard, int objId)

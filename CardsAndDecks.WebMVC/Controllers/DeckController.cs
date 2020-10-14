@@ -1,5 +1,6 @@
 ﻿using CardsAndDecks.Models;
 using CardsAndDecks.Services;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,8 +31,9 @@ namespace CardsAndDecks.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(DeckCreate model)
         {
+           // var userID = User.Identity.GetUserId();
             if (!ModelState.IsValid) return View(model);
-
+           // model.UserID = userID;
             var service = new DeckService();
             int id = service.CreateDeck(model);
 

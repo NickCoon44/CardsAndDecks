@@ -15,6 +15,7 @@ namespace CardsAndDecks.Services
             var entity = new Deck()
             {
                 Name = model.Name
+                
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -62,7 +63,8 @@ namespace CardsAndDecks.Services
                             CardId = a.CardId,
                             Card = a.Card,
                             DeckId = a.DeckId,
-                            Deck = a.Deck
+                            Deck = a.Deck,
+                            NumberOfAssignments = a.NumberOfAssignments
                         }).ToList()
                     };
             }

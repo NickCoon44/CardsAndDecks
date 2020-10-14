@@ -5,7 +5,9 @@
 }
 
 <div class="page-header">
-    <h2><b>@Model.Name <a href="~/Card/Edit/@Model.Id" class="btn btn-default">Edit</a></b></h2>
+    <h2>
+        <b>@Model.Name <a href="~/Card/Edit/@Model.Id" class="btn btn-default">Edit</a></b>
+    </h2>
     <h4>@Model.TemplateName</h4>
 </div>
 
@@ -50,7 +52,7 @@
                     @Html.DisplayFor(c => item.Value)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", "CardProperty", new { id = item.Id }, new { @class="btn btn-default"})
+                    @Html.ActionLink("Edit", "Edit", "CardProperty", new { id = item.Id }, new { @class = "btn btn-default" })
                 </td>
             </tr>
         }
@@ -72,7 +74,7 @@
                 <b>@Html.ActionLink(item.Deck.Name, "Details", "Deck", new { id = item.DeckId }, null)</b>
             </td>
             <td>
-                @Html.ActionLink("Remove", "Delete", "Assignment", new { assignmentId = item.Id, fromCard = true, objId = Model.Id }, new { @class="btn btn-danger"})
+                @Html.ActionLink("Remove", "Delete", "Assignment", new { assignmentId = item.Id, fromCard = true, objId = Model.Id }, new { @class = "btn btn-danger" })
             </td>
         </tr>
     }
@@ -90,5 +92,5 @@
 
 <p>
     @Html.ActionLink("Delete Card", "Delete", new { id = Model.Id }, new { @class = "btn btn-danger" })
-    @Html.ActionLink("Back to Card List", "Index", null, new { @class="btn btn-default"}) 
+    @Html.ActionLink("Back to Card List", "Index", null, new { @class = "btn btn-default" })
 </p>

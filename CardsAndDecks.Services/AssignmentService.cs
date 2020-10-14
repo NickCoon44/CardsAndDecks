@@ -15,13 +15,35 @@ namespace CardsAndDecks.Services
             var entity = new Assignment()
             {
                 CardId = model.CardId,
-                DeckId = model.DeckId
+                DeckId = model.DeckId,
+                NumberOfAssignments = 1
             };
 
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Assignments.Add(entity);
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool CheckAssignment(int cardId, int deckId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var deck = ctx.Decks.Single(e => e.Id == deckId);
+                var assignments = ctx.Assignments.Where(e => e.DeckId == deck.Id);
+                bool exists = false;
+                foreach (Assignment assignment in assignments)
+                {
+                    if (assignment.CardId == cardId)
+                    {
+                        assignment.NumberOfAssignments++;
+                        exists = true;
+                    }
+                }
+
+                ctx.SaveChanges();
+                return exists;
             }
         }
 
@@ -37,7 +59,8 @@ namespace CardsAndDecks.Services
                     {
                         Id = entity.Id,
                         CardId = entity.CardId,
-                        DeckId = entity.DeckId
+                        DeckId = entity.DeckId,
+                        NumberOfAssignments = entity.NumberOfAssignments
                     };
             }
         }
@@ -49,8 +72,14 @@ namespace CardsAndDecks.Services
                 var entity = ctx
                     .Assignments
                     .Single(e => e.Id == assignmentId);
-
-                ctx.Assignments.Remove(entity);
+                if (entity.NumberOfAssignments > 1)
+                {
+                    entity.NumberOfAssignments--;
+                }
+                else
+                {
+                    ctx.Assignments.Remove(entity);
+                }
 
                 return ctx.SaveChanges() == 1;
             }

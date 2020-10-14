@@ -8,7 +8,6 @@
     <h4>Template: @Model.TemplateName</h4>
 </div>
 
-
 @if (TempData.ContainsKey("SaveResult"))
 {
     <div class="alert alert-success fade in" role="alert">
@@ -52,8 +51,6 @@
                         @Html.EditorFor(x => Model.Values[i], new { htmlAttributes = new { placeholder = $"{Model.TemplatePropertyList[i].PropertyType.ToString()}" } })
                     </td>
                 </tr>
-                @*<br />
-                    <br />*@
 
             }
         </table>

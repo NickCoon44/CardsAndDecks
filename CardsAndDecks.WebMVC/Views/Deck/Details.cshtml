@@ -5,8 +5,10 @@
 }
 
 <div class="page-header">
-    <h2><b>@Model.Name </b><a href="~/Deck/Edit/@Model.Id" class="btn btn-default">Edit</a></h2>
-    <h4>Card List</h4>
+    <h2>
+        <b>@Model.Name </b><a href="~/Deck/Edit/@Model.Id" class="btn btn-default">Edit</a>
+    </h2>
+    <span style="font-size: x-large;">@Model.DeckCount Cards</span>
 </div>
 
 @if (TempData.ContainsKey("SaveResult"))
@@ -21,7 +23,7 @@
 }
 
 <p>
-    @Html.ActionLink("+ Add a Card", "Create", "Assignment", new { id = Model.Id, isCard = false }, new { @class="btn btn-info"})
+    @Html.ActionLink("+ Add a Card", "Create", "Assignment", new { id = Model.Id, isCard = false }, new { @class = "btn btn-info" })
 </p>
 
 <table class="table table-striped">
@@ -30,9 +32,13 @@
             <th>
                 @Html.DisplayName("Card")
             </th>
-            <th>
+            <th style="text-align: center">
                 @Html.DisplayName("Template")
             </th>
+            <th style="text-align: center">
+                @Html.DisplayName("Count")
+            </th>
+            <th></th>
             <th></th>
         </tr>
     </thead>
@@ -43,11 +49,17 @@
             <td>
                 <b>@Html.ActionLink(item.Card.Name, "Details", "Card", new { id = item.CardId }, null)</b>
             </td>
-            <td>
+            <td style="text-align: center">
                 @Html.DisplayFor(c => item.Card.TemplateName)
             </td>
+            <td style="text-align: center">
+                @Html.DisplayFor(c => item.NumberOfAssignments)
+            </td>
             <td>
-                @Html.ActionLink("Remove", "Delete", "Assignment", new { assignmentId = item.Id, fromCard = false, objId = Model.Id }, new { @class="btn btn-danger"})
+                @Html.ActionLink("+", "QuickCreate", "Assignment", new { deckId = item.DeckId, cardId = item.CardId }, new { @class = "btn btn-info" })
+            </td>
+            <td>
+                @Html.ActionLink("Remove", "Delete", "Assignment", new { assignmentId = item.Id, fromCard = false, objId = Model.Id }, new { @class = "btn btn-danger" })
             </td>
 
         </tr>
@@ -55,6 +67,6 @@
 </table>
 
 <p>
-    @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class="btn btn-danger"})
-    @Html.ActionLink("Back to Deck List", "Index", null, new { @class="btn btn-default"}) 
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "btn btn-danger" })
+    @Html.ActionLink("Back to Deck List", "Index", null, new { @class = "btn btn-default" })
 </p>
