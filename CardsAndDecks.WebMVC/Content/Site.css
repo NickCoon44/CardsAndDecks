@@ -39,7 +39,7 @@ textarea {
 }
 
 .jumbotron {
-    background-color: #513322;
+    background-color: #2d1903;
     border: black solid;
     border-width: 0 3px 3px;
     color: white;
@@ -51,7 +51,7 @@ textarea {
 
 .card {
     padding: 20px;
-    background: #513322;
+    background: #2d1903;
     box-shadow: 0 0 20px rgba(0,0,0,0.4);
     border-radius: 5px;
     text-align: center;

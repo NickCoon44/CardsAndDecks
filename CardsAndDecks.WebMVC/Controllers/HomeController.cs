@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.HtmlControls;
 
 namespace CardsAndDecks.WebMVC.Controllers
 {
@@ -22,7 +23,7 @@ namespace CardsAndDecks.WebMVC.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Call me, or Beep me. If you want to reach me, or if you want to page me. It's okay.";
+            ViewBag.Message = "Call me, or Beep me. If you want to reach me, or if you want to page me, it's okay.";
 
             return View();
         }
