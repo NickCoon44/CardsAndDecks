@@ -13,10 +13,18 @@ namespace CardsAndDecks.WebMVC.Controllers
 
     public class DeckController : Controller
     {
+        private DeckService CreateDeckService()
+        {
+            var userId = User.Identity.GetUserId();
+            var service = new DeckService(userId);
+            return service;
+        }
+
         // GET: Deck
         public ActionResult Index()
         {
-            var service = new DeckService();
+            var userId = User.Identity.GetUserId();
+            var service = new DeckService(userId);
             var model = service.GetDecks();
             return View(model);
         }
@@ -31,10 +39,9 @@ namespace CardsAndDecks.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(DeckCreate model)
         {
-           // var userID = User.Identity.GetUserId();
             if (!ModelState.IsValid) return View(model);
-           // model.UserID = userID;
-            var service = new DeckService();
+
+            var service = CreateDeckService();
             int id = service.CreateDeck(model);
 
             if (id != 0)
@@ -50,7 +57,7 @@ namespace CardsAndDecks.WebMVC.Controllers
 
         public ActionResult Details(int id)
         {
-            var svc = new DeckService();
+            var svc = CreateDeckService();
             var model = svc.GetDeckById(id);
 
             return View(model);
@@ -58,7 +65,7 @@ namespace CardsAndDecks.WebMVC.Controllers
 
         public ActionResult Edit(int id)
         {
-            var service = new DeckService();
+            var service = CreateDeckService();
             var detail = service.GetDeckById(id);
             var model = new DeckEdit
             {
@@ -81,7 +88,7 @@ namespace CardsAndDecks.WebMVC.Controllers
                 return View(model);
             }
 
-            var service = new DeckService();
+            var service = CreateDeckService();
 
             if (service.UpdateDeck(model))
             {
@@ -95,7 +102,7 @@ namespace CardsAndDecks.WebMVC.Controllers
 
         public ActionResult Delete(int id)
         {
-            var svc = new DeckService();
+            var svc = CreateDeckService();
             var model = svc.GetDeckById(id);
 
             return View(model);
@@ -106,7 +113,7 @@ namespace CardsAndDecks.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
-            var service = new DeckService();
+            var service = CreateDeckService();
 
             service.DeleteDeck(id);
 

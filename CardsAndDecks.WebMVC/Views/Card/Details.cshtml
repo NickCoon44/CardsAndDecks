@@ -25,6 +25,7 @@
     </div>
 }
 
+@*@Html.ActionLink("Edit All", "Edit", "Card", new { Id = Model.Id }, new { @class = "btn btn-default" })*@
 
 <table class="table table-hover">
     <thead>
@@ -66,7 +67,6 @@
             <th>@Html.ActionLink("+ Add a Deck", "Create", "Assignment", new { id = Model.Id, isCard = true }, new { @class = "btn btn-info" })</th>
         </tr>
     </thead>
-
     @foreach (var item in Model.AssignmentList)
     {
         <tr>

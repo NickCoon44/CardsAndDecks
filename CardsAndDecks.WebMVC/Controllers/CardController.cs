@@ -1,5 +1,6 @@
 ﻿using CardsAndDecks.Models;
 using CardsAndDecks.Services;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,7 +54,8 @@ namespace CardsAndDecks.WebMVC.Controllers
 
         public ActionResult Details(int id)
         {
-            var svc = new CardService();
+            var userId = User.Identity.GetUserId();
+            var svc = new CardService(userId);
             var model = svc.GetCardById(id);
 
             return View(model);
@@ -67,6 +69,7 @@ namespace CardsAndDecks.WebMVC.Controllers
             {
                 CardId = card.Id,
                 Name = card.Name,
+                PropertyList = card.PropertyList
             };
 
             return View(model);
@@ -76,7 +79,7 @@ namespace CardsAndDecks.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, CardEdit model)
         {
-            if (!ModelState.IsValid) return View(model);
+            if (!ModelState.IsValid) return RedirectToAction("Edit", id);
 
             if (model.CardId != id)
             {
@@ -89,11 +92,9 @@ namespace CardsAndDecks.WebMVC.Controllers
             if (service.UpdateCard(model))
             {
                 TempData["SaveResult"] = "The Card name was updated.";
-                return RedirectToAction("Details", new { id = model.CardId});
+            return RedirectToAction("Details", new { id = model.CardId });
             }
-
-            ModelState.AddModelError("", "The Card name could not be updated.");
-            return View(model);
+            return RedirectToAction("Edit", id);
         }
 
         public ActionResult Delete(int id)

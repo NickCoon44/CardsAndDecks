@@ -27,6 +27,9 @@ namespace CardsAndDecks.WebMVC.Controllers
             var templateService = new TemplateService();
             var template = templateService.GetTemplateById(card.TemplateId);
 
+            var tempPropList = templateService.GetTemplateProperties(card.TemplateId);
+            cardService.SeedValues(cardId, tempPropList);
+
             var values = new string[template.PropertyList.Count()];
             values[0] = card.Name;
 
@@ -48,12 +51,13 @@ namespace CardsAndDecks.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CardViewModel model)
         {
-            if (!ModelState.IsValid) return View(model);
+            if (!ModelState.IsValid) return RedirectToAction("Create", new { id = model.CardId });
 
             var tempService = new TemplateService();
             var tempPropList = tempService.GetTemplateProperties(model.TemplateId);
 
             var cardService = new CardService();
+            cardService.ClearProperties(model.CardId);
 
             for (var i = 0; i < model.Values.Count(); i++)
             {
@@ -68,13 +72,13 @@ namespace CardsAndDecks.WebMVC.Controllers
                 {
                     ModelState.AddModelError("", "Property could not be created.");
 
-                    return View(model);
+                    return RedirectToAction("Create", new { id = model.CardId });
                 }
 
             }
 
             TempData["SaveResult"] = "Card Created";
-            return RedirectToAction("Index", "Card");
+            return RedirectToAction("Details", "Card", new { id = model.CardId });
         }
 
         public ActionResult Edit(int id)
@@ -116,5 +120,7 @@ namespace CardsAndDecks.WebMVC.Controllers
             ModelState.AddModelError("", "The Property could not be updated.");
             return View(model);
         }
+
+
     }
 }

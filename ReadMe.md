@@ -20,7 +20,7 @@ Cards And Decks is a database app used for creating custom cards based on user-c
   - Card limits
   - Better appearance
   - The ability to generate Test draws
-  - User Identity Roles
+  - User Roles (admin)
 
 ### Technology
 * Visual Studio Community 2019
@@ -43,7 +43,7 @@ Version 1.0 Released 10/14/20
 - You must use a Template to create a Card from.
 - If you want to add or delete a property, you cannot. You will have to create a new Template.
 - The Property Types are currently useless, but will be used when Sorting is implemented.
-- User roles and Identities have not been implemented yet. Everything you create is shared with all other users.
+- Templates and Cards are shared, while Decks are your own. This will likely be refactored in the future.
 - If you find or cause an issue, please contact me.
 - If you just want to say something nice, please contact me.
 - If you are just generally in need of help, please contact me.

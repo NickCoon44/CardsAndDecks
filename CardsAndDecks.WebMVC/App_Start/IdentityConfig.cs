@@ -47,8 +47,8 @@ namespace CardsAndDecks.WebMVC
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
-                AllowOnlyAlphanumericUserNames = false,
-                RequireUniqueEmail = true
+                AllowOnlyAlphanumericUserNames = true,
+                RequireUniqueEmail = false
             };
 
             // Configure validation logic for passwords

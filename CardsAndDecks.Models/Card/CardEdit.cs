@@ -10,5 +10,6 @@ namespace CardsAndDecks.Models
     {
         public int CardId { get; set; }
         public string Name { get; set; }
+        public ICollection<CardPropDetail> PropertyList { get; set; }
     }
 }

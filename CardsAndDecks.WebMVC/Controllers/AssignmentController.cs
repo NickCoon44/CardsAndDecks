@@ -1,5 +1,6 @@
 ﻿using CardsAndDecks.Models;
 using CardsAndDecks.Services;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,18 @@ namespace CardsAndDecks.WebMVC.Controllers
     [Authorize]
     public class AssignmentController : Controller
     {
+        private AssignmentService CreateAssignmentService()
+        {
+            var userId = User.Identity.GetUserId();
+            var service = new AssignmentService(userId);
+            return service;
+        }
+
         // GET: Create
         public ActionResult Create(int id, bool isCard)
         {
-            var deckService = new DeckService();
+            var userId = User.Identity.GetUserId();
+            var deckService = new DeckService(userId);
             var cardService = new CardService();
             if (isCard)
             {
@@ -43,7 +52,7 @@ namespace CardsAndDecks.WebMVC.Controllers
         // GET: Create
         public ActionResult CreateAssignment(int deckId, int cardId, bool isCard)
         {
-            var svc = new AssignmentService();
+            var svc = CreateAssignmentService();
             if (!svc.CheckAssignment(cardId, deckId))
             {
                 var assignment = new AssignmentCreate()
@@ -65,14 +74,14 @@ namespace CardsAndDecks.WebMVC.Controllers
 
         public ActionResult QuickCreate(int deckId, int cardId)
         {
-            var svc = new AssignmentService();
+            var svc = CreateAssignmentService();
             svc.CheckAssignment(cardId, deckId);
             return RedirectToAction("Details", "Deck", new { id = deckId});
         }
 
         public ActionResult Delete(int assignmentId, bool fromCard, int objId)
         {
-            var svc = new AssignmentService();
+            var svc = CreateAssignmentService();
             svc.DeleteAssignment(assignmentId);
 
             if (fromCard)

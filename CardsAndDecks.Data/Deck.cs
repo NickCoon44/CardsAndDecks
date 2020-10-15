@@ -15,9 +15,9 @@ namespace CardsAndDecks.Data
         [Required]
         public string Name { get; set; }
         //FK to ApplicationUser
-        //[ForeignKey("User")]
-        //public string ApplicationUserId { get; set; }
-        //public virtual ApplicationUser User { get; set; }
+        [ForeignKey(nameof(User))]
+        public string ApplicationUserId { get; set; }
+        public virtual ApplicationUser User { get; set; }
         public virtual ICollection<Assignment> AssignmentList { get; set; }
 
 

@@ -21,5 +21,8 @@ namespace CardsAndDecks.Data
         public int CardId { get; set; }
         public virtual Card Card { get; set; }
         public int NumberOfAssignments { get; set; }
+        [ForeignKey(nameof(User))]
+        public string ApplicationUserId { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }

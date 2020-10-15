@@ -10,10 +10,17 @@ namespace CardsAndDecks.Services
 {
     public class AssignmentService
     {
+        private readonly string _userid;
+
+        public AssignmentService(string userId)
+        {
+            _userid = userId;
+        }
         public bool CreateAssignment(AssignmentCreate model)
         {
             var entity = new Assignment()
             {
+                ApplicationUserId = _userid,
                 CardId = model.CardId,
                 DeckId = model.DeckId,
                 NumberOfAssignments = 1
@@ -31,7 +38,7 @@ namespace CardsAndDecks.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var deck = ctx.Decks.Single(e => e.Id == deckId);
-                var assignments = ctx.Assignments.Where(e => e.DeckId == deck.Id);
+                var assignments = ctx.Assignments.Where(e => e.DeckId == deck.Id && e.ApplicationUserId == _userid);
                 bool exists = false;
                 foreach (Assignment assignment in assignments)
                 {

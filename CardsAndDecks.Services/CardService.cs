@@ -1,5 +1,6 @@
 ﻿using CardsAndDecks.Data;
 using CardsAndDecks.Models;
+using CardsAndDecks.Models.Template;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,13 @@ namespace CardsAndDecks.Services
 {
     public class CardService
     {
+        private readonly string _userid;
+
+        public CardService() { }
+        public CardService(string userId)
+        {
+            _userid = userId;
+        }
         public int CreateCard(CardCreate model)
         {
             using (var ctx = new ApplicationDbContext())
@@ -53,7 +61,7 @@ namespace CardsAndDecks.Services
                 var entity = ctx
                     .Cards
                     .Single(e => e.Id == id);
-
+                
                 return
                     new CardDetail
                     {
@@ -69,7 +77,7 @@ namespace CardsAndDecks.Services
                             CardId = p.CardId,
                             Value = p.Value
                         }).ToList(),
-                        AssignmentList = entity.AssignmentList.Select(a => new AssignmentDetail
+                        AssignmentList = entity.AssignmentList.Where(a => a.ApplicationUserId == _userid).Select(a => new AssignmentDetail
                         {
                             Id = a.Id,
                             CardId = a.Id,
@@ -128,8 +136,18 @@ namespace CardsAndDecks.Services
                     .Single(e => e.Id == model.CardId);
 
                 entity.Name = model.Name;
+                //entity.PropertyList = model.PropertyList.Select(c => new CardProperty
+                //{
+                //    CardId = entity.Id,
+                //    TemplateId = entity.TemplateId,
+                //    PropertyName = c.PropertyName,
+                //    PropertyType = c.PropertyType,
+                //    Value = c.Value
+                //}).ToList();
 
-                return ctx.SaveChanges() == 1;
+                var changes = ctx.SaveChanges();
+
+                return changes == 1;
             }
         }
 
@@ -146,6 +164,25 @@ namespace CardsAndDecks.Services
             }
         }
 
+        public void SeedValues(int cardId, IList<TemplatePropDetail> tempPropList)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Cards.Single(e => e.Id == cardId);
+
+                foreach (var property in tempPropList)
+                {
+                    var cardProp = new CardPropCreate
+                    {
+                        TemplatePropId = property.Id,
+                        CardId = cardId,
+                        Value = "x"
+                    };
+                    CreateCardProperty(cardProp);
+                }
+            }
+        }
+
         public bool DeleteCard(int cardId)
         {
             using (var ctx = new ApplicationDbContext())
@@ -158,6 +195,19 @@ namespace CardsAndDecks.Services
                 ctx.Cards.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public void ClearProperties(int cardId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.CardProperties.Where(e => e.CardId == cardId);
+                foreach (var property in query)
+                {
+                    ctx.CardProperties.Remove(property);
+                }
+                ctx.SaveChanges();
             }
         }
     }

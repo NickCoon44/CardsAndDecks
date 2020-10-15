@@ -10,10 +10,18 @@ namespace CardsAndDecks.Services
 {
     public class DeckService
     {
+        private readonly string _userid;
+
+        public DeckService(string userId)
+        {
+            _userid = userId;
+        }
+
         public int CreateDeck(DeckCreate model)
         {
             var entity = new Deck()
             {
+                ApplicationUserId = _userid,
                 Name = model.Name
                 
             };
@@ -35,6 +43,7 @@ namespace CardsAndDecks.Services
             {
                 var query = ctx
                     .Decks
+                    .Where(e => e.ApplicationUserId == _userid)
                     .Select(e => new DeckDetail
                     {
                         Id = e.Id,

@@ -72,7 +72,8 @@
 }
 
 
-@Html.ActionLink("Done", "Index", "Template", null, new { onclick = "return confirm('Click OK to Create this Template. You will not be able to change its Properties later.');", @class = "btn btn-info" })
+@Html.ActionLink("Save and Return", "Index", "Template", null, new { onclick = "return confirm('Click OK to Create this Template. You will not be able to change its Properties later.');", @class = "btn btn-info" })
+@Html.ActionLink("Save and View", "Details", "Template", new { id = Model.TemplateId}, new { onclick = "return confirm('Click OK to Create this Template. You will not be able to change its Properties later.');", @class = "btn btn-info" })
 
 
 @section Scripts {
